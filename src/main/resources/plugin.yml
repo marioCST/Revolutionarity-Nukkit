@@ -1,0 +1,44 @@
+name: Revolutionarity
+version: 1.0
+api: 1.0.13
+main: de.mariocst.revolutionarity.Revolutionarity
+author: marioCST
+description: Revolutionarity AntiCheat for Nukkit Servers
+
+permissions:
+  revolutionarity.*:
+    description: All permissions to this plugin
+    default: op
+    children:
+      revolutionarity.antiimmobile.bypass: true
+      revolutionarity.blockreach.bypass: true
+      revolutionarity.freeze: true
+      revolutionarity.reach.bypass: true
+      revolutionarity.report: true
+      revolutionarity.revolutionarity: true
+      revolutionarity.selfhit.bypass: true
+      revolutionarity.staff: true
+  revolutionarity.anitimmobile.bypass:
+    description: Bypass antiimmbile check
+    default: op
+  revolutionarity.blockreach.bypass:
+    description: Bypass blockreach check
+    default: op
+  revolutionarity.freeze:
+    description: Freeze a player
+    default: op
+  revolutionarity.reach.bypass:
+    description: Bypass reach check
+    default: op
+  revolutionarity.report:
+    description: Report a player
+    default: op
+  revolutionarity.revolutionarity:
+    description: Revolutionarity command
+    default: op
+  revolutionarity.selfhit.bypass:
+    description: Bypass selfhit check
+    default: op
+  revolutionarity.staff:
+    description: Staff permission
+    default: op
