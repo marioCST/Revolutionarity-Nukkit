@@ -14,7 +14,7 @@ public class Settings {
 
     public HashMap<Player, Double> velo = new HashMap<>();
 
-    private boolean antiImmobile, blockReach, reach, selfHit;
+    private boolean antiImmobile, blockReach, reach, selfHit, speed;
 
     private double maxBlockReach, maxReach, maxVelo;
 
@@ -47,6 +47,10 @@ public class Settings {
 
     public boolean isSelfHit() {
         return this.selfHit;
+    }
+
+    public boolean isSpeed() {
+        return speed;
     }
 
     public double getMaxVelo() {
@@ -96,6 +100,13 @@ public class Settings {
             this.selfHit = true;
         }
 
+        if (this.config.containsKey("speed")) {
+            this.speed = this.config.getBoolean("speed");
+        }
+        else {
+            this.speed = true;
+        }
+
         if (this.config.containsKey("maxVelo")) {
             this.maxVelo = this.config.getDouble("maxVelo");
         }
@@ -114,6 +125,7 @@ public class Settings {
             this.config.put("reach", this.reach);
             this.config.put("maxReach", this.maxReach);
             this.config.put("selfHit", this.selfHit);
+            this.config.put("speed", this.speed);
             this.config.put("maxVelo", this.maxVelo);
             Config c = new Config(this.plugin.getDataFolder() + "/settings.yml", Config.YAML);
             c.setAll(this.config);

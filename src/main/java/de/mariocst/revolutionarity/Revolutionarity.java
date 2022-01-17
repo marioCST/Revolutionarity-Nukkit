@@ -6,11 +6,9 @@ import cn.nukkit.command.CommandMap;
 import cn.nukkit.level.Location;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.plugin.PluginManager;
+import cn.nukkit.scheduler.ServerScheduler;
 import cn.nukkit.utils.Config;
-import de.mariocst.revolutionarity.checks.AntiImmobile;
-import de.mariocst.revolutionarity.checks.BlockReach;
-import de.mariocst.revolutionarity.checks.Reach;
-import de.mariocst.revolutionarity.checks.SelfHit;
+import de.mariocst.revolutionarity.checks.*;
 import de.mariocst.revolutionarity.commands.*;
 import de.mariocst.revolutionarity.config.*;
 import de.mariocst.revolutionarity.forms.ReportForm;
@@ -89,6 +87,10 @@ public class Revolutionarity extends PluginBase {
         manager.registerEvents(new BlockReach(this), this);
         manager.registerEvents(new Reach(this), this);
         manager.registerEvents(new SelfHit(this), this);
+
+        ServerScheduler scheduler = this.getServer().getScheduler();
+
+        scheduler.scheduleRepeatingTask(this, new Speed(this), 1);
 
         this.reportForm = new ReportForm();
     }
