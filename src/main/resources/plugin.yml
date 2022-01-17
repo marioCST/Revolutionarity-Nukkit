@@ -17,6 +17,7 @@ permissions:
       revolutionarity.report: true
       revolutionarity.revolutionarity: true
       revolutionarity.selfhit.bypass: true
+      revolutionarity.speed.bypass: true
       revolutionarity.staff: true
   revolutionarity.anitimmobile.bypass:
     description: Bypass antiimmbile check
@@ -38,6 +39,9 @@ permissions:
     default: op
   revolutionarity.selfhit.bypass:
     description: Bypass selfhit check
+    default: op
+  revolutionarity.speed.bypass:
+    description: Bypass speed check
     default: op
   revolutionarity.staff:
     description: Staff permission
