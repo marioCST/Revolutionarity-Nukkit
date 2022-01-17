@@ -85,6 +85,7 @@ public class Revolutionarity extends PluginBase {
 
         manager.registerEvents(new AntiImmobile(this), this);
         manager.registerEvents(new BlockReach(this), this);
+        manager.registerEvents(new KillAura(this), this);
         manager.registerEvents(new Reach(this), this);
         manager.registerEvents(new SelfHit(this), this);
 

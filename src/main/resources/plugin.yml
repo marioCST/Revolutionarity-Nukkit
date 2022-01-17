@@ -13,6 +13,7 @@ permissions:
       revolutionarity.antiimmobile.bypass: true
       revolutionarity.blockreach.bypass: true
       revolutionarity.freeze: true
+      revolutionarity.killaura.bypass: true
       revolutionarity.reach.bypass: true
       revolutionarity.report: true
       revolutionarity.revolutionarity: true
@@ -27,6 +28,9 @@ permissions:
     default: op
   revolutionarity.freeze:
     description: Freeze a player
+    default: op
+  revolutionarity.killaura.bypass:
+    description: Bypass killaura check
     default: op
   revolutionarity.reach.bypass:
     description: Bypass reach check

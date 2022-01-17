@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import de.mariocst.revolutionarity.Revolutionarity;
+import lombok.Getter;
 
 import java.util.HashMap;
 
@@ -14,47 +15,17 @@ public class Settings {
 
     public HashMap<Player, Double> velo = new HashMap<>();
 
-    private boolean antiImmobile, blockReach, reach, selfHit, speed;
+    @Getter
+    private boolean antiImmobile, blockReach, killAura, reach, selfHit, speed;
 
-    private double maxBlockReach, maxReach, maxVelo;
+    @Getter
+    private double maxBlockReach, maxYaw, maxPitch, maxReach, maxVelo;
 
     public Settings(Revolutionarity plugin, ConfigSection configSection) {
         this.plugin = plugin;
 
         this.config = configSection;
         this.init();
-    }
-
-    public boolean isAntiImmobile() {
-        return antiImmobile;
-    }
-
-    public boolean isBlockReach() {
-        return blockReach;
-    }
-
-    public double getMaxBlockReach() {
-        return maxBlockReach;
-    }
-
-    public boolean isReach() {
-        return this.reach;
-    }
-
-    public double getMaxReach() {
-        return this.maxReach;
-    }
-
-    public boolean isSelfHit() {
-        return this.selfHit;
-    }
-
-    public boolean isSpeed() {
-        return speed;
-    }
-
-    public double getMaxVelo() {
-        return maxVelo;
     }
 
     private void init() {
@@ -77,6 +48,27 @@ public class Settings {
         }
         else {
             this.maxBlockReach = 5.77;
+        }
+
+        if (this.config.containsKey("killAura")) {
+            this.killAura = this.config.getBoolean("killAura");
+        }
+        else {
+            this.killAura = true;
+        }
+
+        if (this.config.containsKey("maxYaw")) {
+            this.maxYaw = this.config.getDouble("maxYaw");
+        }
+        else {
+            this.maxYaw = 66.0;
+        }
+
+        if (this.config.containsKey("maxPitch")) {
+            this.maxPitch = this.config.getDouble("maxPitch");
+        }
+        else {
+            this.maxPitch = 62.0;
         }
 
         if (this.config.containsKey("reach")) {
@@ -113,8 +105,6 @@ public class Settings {
         else {
             this.maxVelo = 20.0;
         }
-
-        this.save();
     }
 
     public void save() {
@@ -122,6 +112,9 @@ public class Settings {
             this.config.put("antiImmobile", this.antiImmobile);
             this.config.put("blockReach", this.blockReach);
             this.config.put("maxBlockReach", this.maxBlockReach);
+            this.config.put("killAura", this.killAura);
+            this.config.put("maxYaw", this.maxYaw);
+            this.config.put("maxPitch", this.maxPitch);
             this.config.put("reach", this.reach);
             this.config.put("maxReach", this.maxReach);
             this.config.put("selfHit", this.selfHit);

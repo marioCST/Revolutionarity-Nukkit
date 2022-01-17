@@ -42,8 +42,6 @@ public class PluginSettings {
         else {
             this.discordWebhookLink = "";
         }
-
-        this.save();
     }
 
     public void save() {

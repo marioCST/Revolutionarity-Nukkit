@@ -22,18 +22,18 @@ public class Speed extends Task {
     // Experimental
     @Override
     public void onRun(int i) {
-        if (!this.plugin.getSettings().isSpeed()) return;
-
         for (Player player : this.plugin.getServer().getOnlinePlayers().values()) {
-            if (player.hasPermission("revolutionarity.speed.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
-
-            if (player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT)) return;
-
             lastPos.remove(player);
             lastPos.put(player, pos.get(player));
 
             pos.remove(player);
             pos.put(player, player.getLocation());
+
+            if (!this.plugin.getSettings().isSpeed()) return;
+
+            if (player.hasPermission("revolutionarity.speed.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+
+            if (player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT)) return;
 
             try {
                 double posX = pos.get(player).getX();

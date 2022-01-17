@@ -46,6 +46,7 @@ public class RevolutionaryCommand extends Command {
                                 break;
                             }
                         }
+                        break;
                     }
                     case "setprefix": {
                         StringBuilder strings = new StringBuilder();
@@ -93,6 +94,7 @@ public class RevolutionaryCommand extends Command {
                                 break;
                             }
                         }
+                        break;
                     }
                     case "setprefix": {
                         StringBuilder strings = new StringBuilder();
