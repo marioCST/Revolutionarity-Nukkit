@@ -83,8 +83,10 @@ public class Revolutionarity extends PluginBase {
 
         PluginManager manager = this.getServer().getPluginManager();
 
+        manager.registerEvents(new AirJump(this), this);
         manager.registerEvents(new AntiImmobile(this), this);
         manager.registerEvents(new BlockReach(this), this);
+        manager.registerEvents(new Flight(this), this);
         manager.registerEvents(new KillAura(this), this);
         manager.registerEvents(new Reach(this), this);
         manager.registerEvents(new SelfHit(this), this);

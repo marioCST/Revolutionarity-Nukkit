@@ -1,25 +1,26 @@
 package de.mariocst.revolutionarity.checks;
 
-import cn.nukkit.AdventureSettings;
 import cn.nukkit.Player;
 import cn.nukkit.block.BlockID;
+import cn.nukkit.event.Listener;
 import cn.nukkit.level.Location;
 import cn.nukkit.scheduler.Task;
 import de.mariocst.revolutionarity.Revolutionarity;
 
 import java.util.HashMap;
 
-public class Speed extends Task {
+public class Speed extends Task implements Listener {
     private final Revolutionarity plugin;
 
     private final HashMap<Player, Location> pos = new HashMap<>();
-    private final HashMap<Player, Location> lastPos = new HashMap<>();
+    public static final HashMap<Player, Location> lastPos = new HashMap<>();
+
+    private final HashMap<Player, Integer> wait = new HashMap<>();
 
     public Speed(Revolutionarity plugin) {
         this.plugin = plugin;
     }
 
-    // Experimental
     @Override
     public void onRun(int i) {
         for (Player player : this.plugin.getServer().getOnlinePlayers().values()) {
@@ -29,11 +30,16 @@ public class Speed extends Task {
             pos.remove(player);
             pos.put(player, player.getLocation());
 
-            if (!this.plugin.getSettings().isSpeed()) return;
+            /*if (!this.plugin.getSettings().isSpeed()) return;
 
             if (player.hasPermission("revolutionarity.speed.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
 
-            if (player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT)) return;
+            if (this.wait.containsKey(player)) if (this.wait.get(player) != 0) {
+                this.wait.put(player, this.wait.get(player) - 1);
+                return;
+            }
+
+            if (Flight.isFlying(player)) return;
 
             try {
                 double posX = pos.get(player).getX();
@@ -54,35 +60,38 @@ public class Speed extends Task {
                 if (diffX < 0) diffX *= -1;
                 if (diffZ < 0) diffZ *= -1;
 
-                diffX *= 5;
-                diffZ *= 5;
+                diffX *= 20;
+                diffZ *= 20;
 
                 double speed = Math.sqrt((diffX * diffX) + (diffZ * diffZ));
 
                 if (!player.isOnGround())
                     speed /= 1.5;
 
-                double maxSpeed = 5.5;
+                // Nukkit is breaking the limits
+
+                double maxSpeed = 8.7;
 
                 if (player.isSprinting()) {
                     if (player.getLevel().getBlock(player.getLocation().add(0.0, 2.0, 0.0)).getId() != BlockID.AIR) {
-                        maxSpeed += 6.5;
+                        maxSpeed += 9.6;
                     }
                     else {
-                        maxSpeed += 3.1;
+                        maxSpeed += 5.3;
                     }
                 }
 
                 if (player.isSneaking()) {
-                    maxSpeed -= 3.7;
+                    maxSpeed -= 2.4;
                 }
 
                 if (speed > maxSpeed) {
                     player.teleport(lastPos.get(player));
                     this.plugin.flag("Speed", "Speed: " + speed + "/" + maxSpeed, player);
+                    this.wait.put(player, 3);
                 }
             }
-            catch (NullPointerException ignored) { }
+            catch (NullPointerException ignored) { }*/
         }
     }
 }

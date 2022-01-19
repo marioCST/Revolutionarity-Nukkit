@@ -31,16 +31,10 @@ public class KillAura implements Listener {
         final Location entityLocation = event.getEntity().getLocation();
 
         final float yawToEntity = CheckUtils.getYawToEntity(playerLocation, (float) player.yaw, entityLocation);
-        final float pitchToEntity = CheckUtils.getPitchToEntity(playerLocation, (float) player.pitch, entityLocation);
 
         if (yawToEntity >= this.plugin.getSettings().getMaxYaw()) {
             event.setCancelled(true);
             this.plugin.flag("KillAura", "Yaw: " + yawToEntity + "/" + this.plugin.getSettings().getMaxYaw(), player);
-        }
-
-        if (pitchToEntity >= this.plugin.getSettings().getMaxPitch()) {
-            event.setCancelled(true);
-            this.plugin.flag("KillAura", "Pitch: " + pitchToEntity + "/" + this.plugin.getSettings().getMaxPitch(), player);
         }
     }
 }

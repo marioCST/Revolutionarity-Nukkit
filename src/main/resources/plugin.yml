@@ -10,8 +10,10 @@ permissions:
     description: All permissions to this plugin
     default: op
     children:
+      revolutionarity.airjump.bypass: true
       revolutionarity.antiimmobile.bypass: true
       revolutionarity.blockreach.bypass: true
+      revolutionarity.flight.bypass: true
       revolutionarity.freeze: true
       revolutionarity.killaura.bypass: true
       revolutionarity.reach.bypass: true
@@ -20,11 +22,17 @@ permissions:
       revolutionarity.selfhit.bypass: true
       revolutionarity.speed.bypass: true
       revolutionarity.staff: true
+  revolutionarity.airjump.bypass:
+    description: Bypass airjump check
+    default: op
   revolutionarity.anitimmobile.bypass:
     description: Bypass antiimmbile check
     default: op
   revolutionarity.blockreach.bypass:
     description: Bypass blockreach check
+    default: op
+  revolutionarity.flight.bypass:
+    description: Bypass flight check
     default: op
   revolutionarity.freeze:
     description: Freeze a player

@@ -16,10 +16,10 @@ public class Settings {
     public HashMap<Player, Double> velo = new HashMap<>();
 
     @Getter
-    private boolean antiImmobile, blockReach, killAura, reach, selfHit, speed;
+    private boolean airJump, antiImmobile, blockReach, flight, killAura, reach, selfHit, speed;
 
     @Getter
-    private double maxBlockReach, maxYaw, maxPitch, maxReach, maxVelo;
+    private double maxBlockReach, maxYaw, maxReach, maxVelo;
 
     public Settings(Revolutionarity plugin, ConfigSection configSection) {
         this.plugin = plugin;
@@ -29,6 +29,13 @@ public class Settings {
     }
 
     private void init() {
+        if (this.config.containsKey("airJump")) {
+            this.airJump = this.config.getBoolean("airJump");
+        }
+        else {
+            this.airJump = true;
+        }
+
         if (this.config.containsKey("antiImmobile")) {
             this.antiImmobile = this.config.getBoolean("antiImmobile");
         }
@@ -50,6 +57,13 @@ public class Settings {
             this.maxBlockReach = 5.77;
         }
 
+        if (this.config.containsKey("flight")) {
+            this.flight = this.config.getBoolean("flight");
+        }
+        else {
+            this.flight = true;
+        }
+
         if (this.config.containsKey("killAura")) {
             this.killAura = this.config.getBoolean("killAura");
         }
@@ -62,13 +76,6 @@ public class Settings {
         }
         else {
             this.maxYaw = 66.0;
-        }
-
-        if (this.config.containsKey("maxPitch")) {
-            this.maxPitch = this.config.getDouble("maxPitch");
-        }
-        else {
-            this.maxPitch = 62.0;
         }
 
         if (this.config.containsKey("reach")) {
@@ -109,12 +116,13 @@ public class Settings {
 
     public void save() {
         try {
+            this.config.put("airJump", this.airJump);
             this.config.put("antiImmobile", this.antiImmobile);
             this.config.put("blockReach", this.blockReach);
             this.config.put("maxBlockReach", this.maxBlockReach);
+            this.config.put("flight", this.flight);
             this.config.put("killAura", this.killAura);
             this.config.put("maxYaw", this.maxYaw);
-            this.config.put("maxPitch", this.maxPitch);
             this.config.put("reach", this.reach);
             this.config.put("maxReach", this.maxReach);
             this.config.put("selfHit", this.selfHit);
