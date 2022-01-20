@@ -39,6 +39,10 @@ public class Flight implements Listener {
         }
 
         if (player.getGamemode() != 1 && player.getGamemode() != 3 && adventureSettingsPacket.getFlag(AdventureSettingsPacket.FLYING)) {
+            if (!this.plugin.getSettings().isFlight()) return;
+
+            if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+
             this.plugin.flag("Flight", "", player);
             adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
             return;
