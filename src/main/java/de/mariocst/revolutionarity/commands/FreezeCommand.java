@@ -27,12 +27,10 @@ public class FreezeCommand extends Command {
 
                 if (t != null) {
                     if (t.isImmobile()) {
-                        this.plugin.freezed.remove(t);
                         t.setImmobile(false);
                         sender.sendMessage(this.plugin.getPrefix() + "The player " + t.getName() + " is not freezed anymore!");
                     }
                     else {
-                        this.plugin.freezed.put(t, t.getLocation());
                         t.setImmobile(true);
                         sender.sendMessage(this.plugin.getPrefix() + "The player " + t.getName() + " got freezed!");
                     }
@@ -51,26 +49,17 @@ public class FreezeCommand extends Command {
 
         if (!this.testPermission(player)) {
             if (args.length == 0) {
-                if (player.isImmobile()) {
-                    this.plugin.freezed.remove(player);
-                    player.setImmobile(false);
-                }
-                else {
-                    this.plugin.freezed.put(player, player.getLocation());
-                    player.setImmobile(true);
-                }
+                player.setImmobile(!player.isImmobile());
             }
             else if (args.length == 1) {
                 Player t = player.getServer().getPlayer(args[0].replaceAll("_", " ").replaceAll("\"", ""));
 
                 if (t != null) {
                     if (t.isImmobile()) {
-                        this.plugin.freezed.remove(t);
                         t.setImmobile(false);
                         player.sendMessage(this.plugin.getPrefix() + "The player " + t.getName() + " is not freezed anymore!");
                     }
                     else {
-                        this.plugin.freezed.put(t, t.getLocation());
                         t.setImmobile(true);
                         player.sendMessage(this.plugin.getPrefix() + "The player " + t.getName() + " got freezed!");
                     }

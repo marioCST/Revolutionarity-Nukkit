@@ -12,6 +12,7 @@ import de.mariocst.revolutionarity.checks.*;
 import de.mariocst.revolutionarity.commands.*;
 import de.mariocst.revolutionarity.config.*;
 import de.mariocst.revolutionarity.forms.ReportForm;
+import de.mariocst.revolutionarity.listener.FreezeEventListener;
 import de.mariocst.revolutionarity.webhook.DiscordWebhook;
 import lombok.Getter;
 import lombok.Setter;
@@ -93,6 +94,7 @@ public class Revolutionarity extends PluginBase {
 
         ServerScheduler scheduler = this.getServer().getScheduler();
 
+        scheduler.scheduleRepeatingTask(this, new FreezeEventListener(this), 1);
         scheduler.scheduleRepeatingTask(this, new Speed(this), 1);
 
         this.reportForm = new ReportForm();
