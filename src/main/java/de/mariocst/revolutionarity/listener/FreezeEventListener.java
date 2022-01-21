@@ -21,6 +21,7 @@ public class FreezeEventListener extends Task {
         for (Player player : this.plugin.getServer().getOnlinePlayers().values()) {
             if (lastFreezed.containsKey(player)) {
                 if (player.isImmobile() != lastFreezed.get(player)) {
+                    //Wait, why did I even add this event???
                     PlayerFreezeEvent event = new PlayerFreezeEvent(player, player.isImmobile());
                     this.plugin.getServer().getPluginManager().callEvent(event);
                 }
