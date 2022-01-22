@@ -13,6 +13,7 @@ import de.mariocst.revolutionarity.commands.*;
 import de.mariocst.revolutionarity.config.*;
 import de.mariocst.revolutionarity.forms.ReportForm;
 import de.mariocst.revolutionarity.listener.FreezeEventListener;
+import de.mariocst.revolutionarity.listener.PacketListener;
 import de.mariocst.revolutionarity.webhook.DiscordWebhook;
 import lombok.Getter;
 import lombok.Setter;
@@ -89,8 +90,11 @@ public class Revolutionarity extends PluginBase {
         manager.registerEvents(new BlockReach(this), this);
         manager.registerEvents(new Flight(this), this);
         manager.registerEvents(new KillAura(this), this);
+        manager.registerEvents(new NoSwing(this), this);
         manager.registerEvents(new Reach(this), this);
         manager.registerEvents(new SelfHit(this), this);
+
+        manager.registerEvents(new PacketListener(), this);
 
         ServerScheduler scheduler = this.getServer().getScheduler();
 

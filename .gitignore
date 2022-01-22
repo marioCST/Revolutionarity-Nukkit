@@ -1,2 +1,13 @@
 # Project exclude paths
 /target/
+.idea/
+*.ldb
+*.log
+*.dat
+*.gz
+*.json
+*.dat_old
+*.dat_older
+*.txt
+*.mca
+server/

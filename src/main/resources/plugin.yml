@@ -16,6 +16,7 @@ permissions:
       revolutionarity.flight.bypass: true
       revolutionarity.freeze: true
       revolutionarity.killaura.bypass: true
+      revolutionarity.noswing.bypass: true
       revolutionarity.reach.bypass: true
       revolutionarity.report: true
       revolutionarity.revolutionarity: true
@@ -39,6 +40,9 @@ permissions:
     default: op
   revolutionarity.killaura.bypass:
     description: Bypass killaura check
+    default: op
+  revolutionarity.noswing.bypass:
+    description: Bypass noswing check
     default: op
   revolutionarity.reach.bypass:
     description: Bypass reach check

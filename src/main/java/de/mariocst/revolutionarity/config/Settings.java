@@ -16,7 +16,7 @@ public class Settings {
     public HashMap<Player, Double> velo = new HashMap<>();
 
     @Getter
-    private boolean airJump, antiImmobile, blockReach, flight, killAura, reach, selfHit, speed;
+    private boolean airJump, antiImmobile, blockReach, flight, killAura, noSwing, reach, selfHit, speed;
 
     @Getter
     private double maxBlockReach, maxYaw, maxReach, maxVelo;
@@ -78,6 +78,13 @@ public class Settings {
             this.maxYaw = 66.0;
         }
 
+        if (this.config.containsKey("noSwing")) {
+            this.noSwing = this.config.getBoolean("noSwing");
+        }
+        else {
+            this.noSwing = true;
+        }
+
         if (this.config.containsKey("reach")) {
             this.reach = this.config.getBoolean("reach");
         }
@@ -123,6 +130,7 @@ public class Settings {
             this.config.put("flight", this.flight);
             this.config.put("killAura", this.killAura);
             this.config.put("maxYaw", this.maxYaw);
+            this.config.put("noSwing", this.noSwing);
             this.config.put("reach", this.reach);
             this.config.put("maxReach", this.maxReach);
             this.config.put("selfHit", this.selfHit);
