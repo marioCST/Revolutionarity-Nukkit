@@ -28,6 +28,8 @@ public class NoSwing implements Listener {
 
         InventoryTransactionPacket packet = (InventoryTransactionPacket) event.getPacket();
 
+        if (packet.transactionType != 3) return;
+
         if (!(PacketListener.lastPacket.get(player) instanceof AnimatePacket)) {
             event.setCancelled(true);
             this.plugin.flag("NoSwing", "", player);
