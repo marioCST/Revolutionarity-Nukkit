@@ -9,6 +9,7 @@ Revolutionarity is a bad and basic AntiCheat for PowerNukkit, providing checks a
 - AntiImmobile
 - BlockReach
 - Flight (Value check)
+- Glide
 - KillAura
 - NoSwing
 - Reach

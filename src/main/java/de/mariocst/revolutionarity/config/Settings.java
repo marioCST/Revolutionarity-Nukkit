@@ -16,7 +16,10 @@ public class Settings {
     public HashMap<Player, Double> velo = new HashMap<>();
 
     @Getter
-    private boolean airJump, antiImmobile, blockReach, flight, killAura, noSwing, reach, selfHit, speed;
+    private boolean airJump, antiImmobile, blockReach, flight, glide, killAura, noSwing, reach, selfHit, speed;
+
+    @Getter
+    private int maxTicksInAir;
 
     @Getter
     private double maxBlockReach, maxYaw, maxReach, maxVelo;
@@ -62,6 +65,20 @@ public class Settings {
         }
         else {
             this.flight = true;
+        }
+
+        if (this.config.containsKey("glide")) {
+            this.glide = this.config.getBoolean("glide");
+        }
+        else {
+            this.glide = true;
+        }
+
+        if (this.config.containsKey("maxTicksInAir")) {
+            this.maxTicksInAir = this.config.getInt("maxTicksInAir");
+        }
+        else {
+            this.maxTicksInAir = 5;
         }
 
         if (this.config.containsKey("killAura")) {
@@ -128,6 +145,8 @@ public class Settings {
             this.config.put("blockReach", this.blockReach);
             this.config.put("maxBlockReach", this.maxBlockReach);
             this.config.put("flight", this.flight);
+            this.config.put("glide", this.glide);
+            this.config.put("maxTicksInAir", this.maxTicksInAir);
             this.config.put("killAura", this.killAura);
             this.config.put("maxYaw", this.maxYaw);
             this.config.put("noSwing", this.noSwing);
