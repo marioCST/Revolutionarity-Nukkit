@@ -1,7 +1,6 @@
 package de.mariocst.revolutionarity.checks;
 
 import cn.nukkit.Player;
-import cn.nukkit.block.BlockID;
 import cn.nukkit.event.Listener;
 import cn.nukkit.level.Location;
 import cn.nukkit.scheduler.Task;
@@ -60,8 +59,8 @@ public class Speed extends Task implements Listener {
                 if (diffX < 0) diffX *= -1;
                 if (diffZ < 0) diffZ *= -1;
 
-                diffX *= 20;
-                diffZ *= 20;
+                diffX *= player.getServer().getTicksPerSecond();
+                diffZ *= player.getServer().getTicksPerSecond();
 
                 double speed = Math.sqrt((diffX * diffX) + (diffZ * diffZ));
 
@@ -70,19 +69,19 @@ public class Speed extends Task implements Listener {
 
                 // Nukkit is breaking the limits
 
-                double maxSpeed = 8.7;
+                double maxSpeed = 5.5;
 
                 if (player.isSprinting()) {
                     if (player.getLevel().getBlock(player.getLocation().add(0.0, 2.0, 0.0)).getId() != BlockID.AIR) {
-                        maxSpeed += 9.6;
+                        maxSpeed += 6.5;
                     }
                     else {
-                        maxSpeed += 5.3;
+                        maxSpeed += 3.1;
                     }
                 }
 
                 if (player.isSneaking()) {
-                    maxSpeed -= 2.4;
+                    maxSpeed -= 3.7;
                 }
 
                 if (speed > maxSpeed) {
