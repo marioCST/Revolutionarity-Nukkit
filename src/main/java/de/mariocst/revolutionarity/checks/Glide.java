@@ -1,5 +1,6 @@
 package de.mariocst.revolutionarity.checks;
 
+import cn.nukkit.AdventureSettings;
 import cn.nukkit.Player;
 import cn.nukkit.block.BlockID;
 import cn.nukkit.event.EventHandler;
@@ -26,6 +27,8 @@ public class Glide implements Listener {
         Player player = event.getPlayer();
 
         if (player.hasPermission("revolutionarity.glide.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+
+        if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) return;
 
         boolean foundBlock = false;
 
