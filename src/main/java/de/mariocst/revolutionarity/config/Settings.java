@@ -57,7 +57,7 @@ public class Settings {
             this.maxBlockReach = this.config.getDouble("maxBlockReach");
         }
         else {
-            this.maxBlockReach = 5.77;
+            this.maxBlockReach = 6.2;
         }
 
         if (this.config.containsKey("flight")) {
