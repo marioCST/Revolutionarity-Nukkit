@@ -1,11 +1,9 @@
 package de.mariocst.revolutionarity.checks;
 
 import cn.nukkit.Player;
-import cn.nukkit.block.BlockID;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJumpEvent;
-import cn.nukkit.math.Vector3;
 import de.mariocst.revolutionarity.Revolutionarity;
 
 public class AirJump implements Listener {
@@ -25,7 +23,7 @@ public class AirJump implements Listener {
 
         if (player.getGamemode() == 1 || player.getGamemode() == 3) return;
 
-        boolean foundBlock = false;
+        /*boolean foundBlock = false;
 
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
@@ -34,9 +32,9 @@ public class AirJump implements Listener {
                     break;
                 }
             }
-        }
+        }*/
 
-        if (player.getLevel().getBlock(player.getLocation().add(0.0, -0.1, 0.0)).getId() == BlockID.AIR && !foundBlock) {
+        if (/*player.getLevel().getBlock(player.getLocation().add(0.0, -0.1, 0.0)).getId() == BlockID.AIR && !foundBlock*/ !player.isOnGround()) {
             player.teleport(Speed.lastPos.get(player));
             this.plugin.flag("AirJump", "", player);
         }
