@@ -68,6 +68,8 @@ public class Flight implements Listener {
 
         if (CheckUtils.isOnGround(player)) return;
 
+        if (!PlayerTasks.lastOnGround.containsKey(player)) return;
+
         if (PlayerTasks.lastOnGround.get(player).getY() < player.getY() - 2.0) {
             player.teleport(PlayerTasks.lastOnGround.get(player));
             this.plugin.flag("FlightB", player);

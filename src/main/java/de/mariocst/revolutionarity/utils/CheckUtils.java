@@ -49,6 +49,60 @@ public class CheckUtils {
     }
 
     public static boolean isOnGround(Player player) {
+        /*double subtract = -0.3;
+        
+        if (isCoordinateXBetween(player, 0.3, 0.7) && isCoordinateZBetween(player, 0.0, 0.3)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(0.0, subtract, -1)).getId() != BlockID.AIR;
+        }
+
+        if (isCoordinateXBetween(player, 0.3, 0.7) && isCoordinateZBetween(player, 0.7, 1.0)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 1)).getId() != BlockID.AIR;
+        }
+
+        if (isCoordinateXBetween(player, 0.0, 0.3) && isCoordinateZBetween(player, 0.3, 0.7)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(-1, subtract, 0.0)).getId() != BlockID.AIR;
+        }
+
+        if (isCoordinateXBetween(player, 0.7, 1.0) && isCoordinateZBetween(player, 0.3, 0.7)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(1, subtract, 0.0)).getId() != BlockID.AIR;
+        }
+
+        if (isCoordinateXBetween(player, 0.3, 0.7) && isCoordinateZBetween(player, 0.3, 0.7)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR;
+        }
+
+        if (isCoordinateXBetween(player, 0.0, 0.3) && isCoordinateZBetween(player, 0.0, 0.3)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(-1, subtract, -1)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(-1, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(0.0, subtract, -1)).getId() != BlockID.AIR;
+        }
+
+        if (isCoordinateXBetween(player, 0.7, 1.0) && isCoordinateZBetween(player, 0.7, 1.0)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(1, subtract, 1)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(1, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 1)).getId() != BlockID.AIR;
+        }
+
+        if (isCoordinateXBetween(player, 0.7, 1.0) && isCoordinateZBetween(player, 0.0, 0.3)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(1, subtract, -1)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(1, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(0.0, subtract, -1)).getId() != BlockID.AIR;
+        }
+
+        if (isCoordinateXBetween(player, 0.0, 0.3) && isCoordinateZBetween(player, 0.7, 1.0)) {
+            return player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(-1, subtract, 1)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(-1, subtract, 0.0)).getId() != BlockID.AIR ||
+                    player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 1)).getId() != BlockID.AIR;
+        }*/
+
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
                 if (player.getLevel().getBlock(player.getLocation().add(x, -0.3, z)).getId() != BlockID.AIR) {
@@ -58,5 +112,17 @@ public class CheckUtils {
         }
 
         return false;
+    }
+
+    private static boolean isCoordinateXBetween(Player player, double minX, double maxX) {
+        if (player.getX() < 0) return player.getX() <= Math.floor(player.getX()) - minX && player.getX() >= Math.floor(player.getX()) - maxX;
+
+        return player.getX() >= Math.floor(player.getX()) + minX && player.getX() <= Math.floor(player.getX()) + maxX;
+    }
+
+    private static boolean isCoordinateZBetween(Player player, double minZ, double maxZ) {
+        if (player.getZ() < 0) return player.getZ() <= Math.floor(player.getZ()) - minZ && player.getZ() >= Math.floor(player.getZ()) - maxZ;
+
+        return player.getZ() >= Math.floor(player.getZ()) + minZ && player.getZ() <= Math.floor(player.getZ()) + maxZ;
     }
 }
