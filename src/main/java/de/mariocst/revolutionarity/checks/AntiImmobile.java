@@ -29,7 +29,7 @@ public class AntiImmobile implements Listener {
                     player.getLocation().getZ() > this.plugin.freezed.get(player).getZ() + 0.1 ||
                     player.getLocation().getZ() < this.plugin.freezed.get(player).getZ() - 0.1) {
                 event.setCancelled(true);
-                this.plugin.flag("AntiImmobile", "", player);
+                this.plugin.flag("AntiImmobile", player);
             }
         }
     }

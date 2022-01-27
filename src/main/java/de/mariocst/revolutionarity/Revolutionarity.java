@@ -128,6 +128,10 @@ public class Revolutionarity extends PluginBase {
         }
     }
 
+    public void flag(String check, Player flagged) {
+        this.flag(check, "", flagged);
+    }
+
     public void flag(String check, String details, Player flagged) {
         String dtls = details.equals("") ? "" : " Details: " + details;
 

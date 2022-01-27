@@ -37,7 +37,7 @@ public class Flight implements Listener {
 
             if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
 
-            this.plugin.flag("FlightA", "", player);
+            this.plugin.flag("FlightA", player);
             adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
             return;
         }
@@ -47,7 +47,7 @@ public class Flight implements Listener {
 
             if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
 
-            this.plugin.flag("FlightA", "", player);
+            this.plugin.flag("FlightA", player);
             adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
             return;
         }
@@ -70,7 +70,7 @@ public class Flight implements Listener {
 
         if (PlayerTasks.lastOnGround.get(player).getY() < player.getY() - 2.0) {
             player.teleport(PlayerTasks.lastOnGround.get(player));
-            this.plugin.flag("FlightB", "", player);
+            this.plugin.flag("FlightB", player);
         }
     }
 

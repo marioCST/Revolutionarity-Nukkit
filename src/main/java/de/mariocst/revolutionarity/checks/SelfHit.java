@@ -25,7 +25,7 @@ public class SelfHit implements Listener {
 
         if (player == event.getEntity()) {
             event.setCancelled(true);
-            this.plugin.flag("SelfHit", "", player);
+            this.plugin.flag("SelfHit", player);
         }
     }
 }

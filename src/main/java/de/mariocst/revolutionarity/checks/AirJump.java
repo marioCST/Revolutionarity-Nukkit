@@ -26,7 +26,7 @@ public class AirJump implements Listener {
 
         if (!CheckUtils.isOnGround(player)) {
             player.teleport(Speed.lastPos.get(player));
-            this.plugin.flag("AirJump", "", player);
+            this.plugin.flag("AirJump", player);
         }
     }
 }

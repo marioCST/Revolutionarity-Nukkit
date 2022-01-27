@@ -31,7 +31,7 @@ public class NoSwing implements Listener {
 
         if (!PacketListener.containsAnimatePacket(player)) {
             event.setCancelled(true);
-            this.plugin.flag("NoSwing", "", player);
+            this.plugin.flag("NoSwing", player);
         }
     }
 }
