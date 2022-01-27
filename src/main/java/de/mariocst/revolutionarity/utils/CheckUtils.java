@@ -1,5 +1,7 @@
 package de.mariocst.revolutionarity.utils;
 
+import cn.nukkit.Player;
+import cn.nukkit.block.BlockID;
 import cn.nukkit.level.Location;
 
 public class CheckUtils {
@@ -44,5 +46,17 @@ public class CheckUtils {
         if (angle < -180.0F) angle += 360.0F;
 
         return angle;
+    }
+
+    public static boolean isOnGround(Player player) {
+        for (int x = -1; x <= 1; x++) {
+            for (int z = -1; z <= 1; z++) {
+                if (player.getLevel().getBlock(player.getLocation().add(x, -0.5, z)).getId() != BlockID.AIR) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

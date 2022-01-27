@@ -127,7 +127,9 @@ public class Revolutionarity extends PluginBase {
     }
 
     public void flag(String check, String details, Player flagged) {
-        this.warning("The player " + flagged.getName() + " got flagged for " + check + "! Details: " + details);
+        String dtls = details.equals("") ? "" : " Details: " + details;
+
+        this.warning("The player " + flagged.getName() + " got flagged for " + check + "!" + dtls);
 
         double velo = 0.0;
 
@@ -142,7 +144,7 @@ public class Revolutionarity extends PluginBase {
 
         for (Player player : this.getServer().getOnlinePlayers().values()) {
             if (player.hasPermission("revolutionarity.staff") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) {
-                player.sendMessage(getPrefix() + "The player " + flagged.getName() + " got flagged for " + check + "! Details: " + details);
+                player.sendMessage(getPrefix() + "The player " + flagged.getName() + " got flagged for " + check + "!" + dtls);
             }
         }
 

@@ -6,8 +6,8 @@ import cn.nukkit.block.BlockID;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerMoveEvent;
-import cn.nukkit.math.Vector3;
 import de.mariocst.revolutionarity.Revolutionarity;
+import de.mariocst.revolutionarity.utils.CheckUtils;
 
 import java.util.HashMap;
 
@@ -30,18 +30,7 @@ public class Glide implements Listener {
 
         if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) return;
 
-        boolean foundBlock = false;
-
-        for (int x = -1; x <= 1; x++) {
-            for (int z = -1; z <= 1; z++) {
-                if (player.getLevel().getBlock(new Vector3(player.getX() + x, player.getY() - 0.1, player.getZ() + z)).getId() != BlockID.AIR) {
-                    foundBlock = true;
-                    break;
-                }
-            }
-        }
-
-        if (event.getFrom().getY() == player.getY() && player.getLevel().getBlock(player.getLocation().add(0.0, -0.1, 0.0)).getId() == BlockID.AIR && !foundBlock) {
+        if (!CheckUtils.isOnGround(player)) {
             int airTime = this.ticksInAir.containsKey(player) ? this.ticksInAir.get(player) + 1 : 1;
 
             this.ticksInAir.remove(player);

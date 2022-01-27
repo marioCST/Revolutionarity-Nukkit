@@ -4,7 +4,6 @@ import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
-import cn.nukkit.network.protocol.AnimatePacket;
 import cn.nukkit.network.protocol.InventoryTransactionPacket;
 import de.mariocst.revolutionarity.Revolutionarity;
 import de.mariocst.revolutionarity.listener.PacketListener;
@@ -30,7 +29,7 @@ public class NoSwing implements Listener {
 
         if (packet.transactionType != 3) return;
 
-        if (!(PacketListener.lastPacket.get(player) instanceof AnimatePacket)) {
+        if (!PacketListener.containsAnimatePacket(player)) {
             event.setCancelled(true);
             this.plugin.flag("NoSwing", "", player);
         }
