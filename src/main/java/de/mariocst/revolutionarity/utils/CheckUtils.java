@@ -51,7 +51,7 @@ public class CheckUtils {
     public static boolean isOnGround(Player player) {
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
-                if (player.getLevel().getBlock(player.getLocation().add(x, -0.5, z)).getId() != BlockID.AIR) {
+                if (player.getLevel().getBlock(player.getLocation().add(x, -0.3, z)).getId() != BlockID.AIR) {
                     return true;
                 }
             }

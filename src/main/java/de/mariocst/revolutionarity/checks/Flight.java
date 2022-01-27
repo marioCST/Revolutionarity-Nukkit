@@ -4,10 +4,14 @@ import cn.nukkit.AdventureSettings;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
+import cn.nukkit.event.player.PlayerMoveEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.network.protocol.AdventureSettingsPacket;
 import cn.nukkit.network.protocol.ProtocolInfo;
+import cn.nukkit.potion.Effect;
 import de.mariocst.revolutionarity.Revolutionarity;
+import de.mariocst.revolutionarity.listener.PlayerTasks;
+import de.mariocst.revolutionarity.utils.CheckUtils;
 
 import java.util.HashMap;
 
@@ -33,7 +37,7 @@ public class Flight implements Listener {
 
             if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
 
-            this.plugin.flag("Flight", "", player);
+            this.plugin.flag("FlightA", "", player);
             adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
             return;
         }
@@ -43,13 +47,31 @@ public class Flight implements Listener {
 
             if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
 
-            this.plugin.flag("Flight", "", player);
+            this.plugin.flag("FlightA", "", player);
             adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
             return;
         }
 
         isFlying.remove(player);
         isFlying.put(player, adventureSettingsPacket.getFlag(AdventureSettingsPacket.FLYING));
+    }
+
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        if (!this.plugin.getSettings().isFlight()) return;
+
+        Player player = event.getPlayer();
+
+        if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+
+        if (player.getEffects().containsKey(Effect.JUMP_BOOST)) return; // Checks will be implemented later
+
+        if (CheckUtils.isOnGround(player)) return;
+
+        if (PlayerTasks.lastOnGround.get(player).getY() < player.getY() - 2.0) {
+            player.teleport(PlayerTasks.lastOnGround.get(player));
+            this.plugin.flag("FlightB", "", player);
+        }
     }
 
     public static boolean isFlying(Player player) {

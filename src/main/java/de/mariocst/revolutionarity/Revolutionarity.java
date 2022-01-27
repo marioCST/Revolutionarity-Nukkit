@@ -14,6 +14,7 @@ import de.mariocst.revolutionarity.config.*;
 import de.mariocst.revolutionarity.forms.ReportForm;
 import de.mariocst.revolutionarity.listener.FreezeEventListener;
 import de.mariocst.revolutionarity.listener.PacketListener;
+import de.mariocst.revolutionarity.listener.PlayerTasks;
 import de.mariocst.revolutionarity.webhook.DiscordWebhook;
 import lombok.Getter;
 import lombok.Setter;
@@ -100,6 +101,7 @@ public class Revolutionarity extends PluginBase {
         ServerScheduler scheduler = this.getServer().getScheduler();
 
         scheduler.scheduleRepeatingTask(this, new FreezeEventListener(this), 1);
+        scheduler.scheduleRepeatingTask(this, new PlayerTasks(this), 1);
         scheduler.scheduleRepeatingTask(this, new Speed(this), 1);
 
         this.reportForm = new ReportForm();
@@ -144,7 +146,7 @@ public class Revolutionarity extends PluginBase {
 
         for (Player player : this.getServer().getOnlinePlayers().values()) {
             if (player.hasPermission("revolutionarity.staff") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) {
-                player.sendMessage(getPrefix() + "The player " + flagged.getName() + " got flagged for " + check + "!" + dtls);
+                player.sendMessage(this.getPrefix() + "The player " + flagged.getName() + " got flagged for " + check + "!" + dtls);
             }
         }
 
@@ -154,7 +156,7 @@ public class Revolutionarity extends PluginBase {
 
             for (Player player : this.getServer().getOnlinePlayers().values()) {
                 if (player.hasPermission("revolutionarity.staff") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) {
-                    player.sendMessage(getPrefix() + "The player " + flagged.getName() + " got kicked for cheating!");
+                    player.sendMessage(this.getPrefix() + "The player " + flagged.getName() + " got kicked for cheating!");
                 }
             }
         }
