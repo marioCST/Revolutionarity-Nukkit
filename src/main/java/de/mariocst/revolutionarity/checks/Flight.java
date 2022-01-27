@@ -5,6 +5,7 @@ import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerMoveEvent;
+import cn.nukkit.event.player.PlayerToggleFlightEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.network.protocol.AdventureSettingsPacket;
 import cn.nukkit.network.protocol.ProtocolInfo;
@@ -73,6 +74,22 @@ public class Flight implements Listener {
         if (PlayerTasks.lastOnGround.get(player).getY() < player.getY() - 2.0) {
             player.teleport(PlayerTasks.lastOnGround.get(player));
             this.plugin.flag("FlightB", player);
+        }
+    }
+
+    @EventHandler
+    public void onToggleFlight(PlayerToggleFlightEvent event) {
+        if (!this.plugin.getSettings().isFlight()) return;
+
+        Player player = event.getPlayer();
+
+        if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+
+        if (!player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT) && player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) {
+            player.getAdventureSettings().set(AdventureSettings.Type.FLYING, false);
+            isFlying.remove(player);
+            isFlying.put(player, player.getAdventureSettings().get(AdventureSettings.Type.FLYING));
+            this.plugin.flag("FlightC", player);
         }
     }
 
