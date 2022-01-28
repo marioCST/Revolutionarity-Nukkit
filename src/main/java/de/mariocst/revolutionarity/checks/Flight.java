@@ -47,20 +47,6 @@ public class Flight implements Listener {
             return;
         }
 
-        if (player.getGamemode() != 1 && player.getGamemode() != 3 && adventureSettingsPacket.getFlag(AdventureSettingsPacket.FLYING)) {
-            if (!this.plugin.getSettings().isFlight()) return;
-
-            if (player.hasPermission("revolutionarity.bypass.flight") ||
-                    player.hasPermission("revolutionarity.bypass.*") ||
-                    player.hasPermission("revolutionarity.*") ||
-                    player.hasPermission("*") ||
-                    player.isOp()) return;
-
-            this.plugin.flag("FlightA", player);
-            adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
-            return;
-        }
-
         isFlying.remove(player);
         isFlying.put(player, adventureSettingsPacket.getFlag(AdventureSettingsPacket.FLYING));
     }
@@ -79,7 +65,7 @@ public class Flight implements Listener {
 
         if (player.getEffects().containsKey(Effect.JUMP_BOOST)) return; // Checks will be implemented later
 
-        if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) return;
+        if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING) || isFlying.containsKey(player)) return;
 
         if (CheckUtils.isOnGround(player)) return;
 
