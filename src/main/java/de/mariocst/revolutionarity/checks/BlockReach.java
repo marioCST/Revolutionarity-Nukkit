@@ -23,7 +23,10 @@ public class BlockReach implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        if (player.hasPermission("revolutionarity.blockreach.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.blockreach") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         Location playerLoc = player.getLocation();
         Location blockLoc = block.getLocation();
@@ -43,7 +46,11 @@ public class BlockReach implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        if (player.hasPermission("revolutionarity.blockreach.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.blockreach") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         Location playerLoc = player.getLocation();
         Location blockLoc = block.getLocation();

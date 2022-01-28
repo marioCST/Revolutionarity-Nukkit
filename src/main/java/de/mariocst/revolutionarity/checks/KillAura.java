@@ -23,7 +23,11 @@ public class KillAura implements Listener {
 
         Player player = (Player) event.getDamager();
 
-        if (player.hasPermission("revolutionarity.killaura.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.killaura") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         if (player.getLoginChainData().getDeviceOS() == 1 || player.getLoginChainData().getDeviceOS() == 2) return; // Filter mobile players (Android, iOS), ToolBox KillAura is shit and will probably get flagged by a NoSwing check, needs check for EditionFaker
 

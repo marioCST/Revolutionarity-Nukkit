@@ -19,7 +19,11 @@ public class AntiImmobile implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.antiimmobile.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.antiimmobile") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         for (Player ignored : this.plugin.freezed.keySet()) {
             if (player.getLocation().getX() > this.plugin.freezed.get(player).getX() + 0.1 ||

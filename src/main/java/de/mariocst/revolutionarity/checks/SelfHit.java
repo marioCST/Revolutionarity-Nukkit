@@ -21,7 +21,11 @@ public class SelfHit implements Listener {
 
         Player player = (Player) event.getDamager();
 
-        if (player.hasPermission("revolutionarity.selfhit.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.selfhit") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         if (player == event.getEntity()) {
             event.setCancelled(true);

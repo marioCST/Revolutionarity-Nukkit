@@ -23,7 +23,11 @@ public class NoSwing implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.noswing.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.noswing") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         InventoryTransactionPacket packet = (InventoryTransactionPacket) event.getPacket();
 

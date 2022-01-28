@@ -36,7 +36,11 @@ public class Flight implements Listener {
         if (!player.getServer().getAllowFlight() && adventureSettingsPacket.getFlag(AdventureSettingsPacket.FLYING) && !player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT)) {
             if (!this.plugin.getSettings().isFlight()) return;
 
-            if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+            if (player.hasPermission("revolutionarity.bypass.flight") ||
+                    player.hasPermission("revolutionarity.bypass.*") ||
+                    player.hasPermission("revolutionarity.*") ||
+                    player.hasPermission("*") ||
+                    player.isOp()) return;
 
             this.plugin.flag("FlightA", player);
             adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
@@ -46,7 +50,11 @@ public class Flight implements Listener {
         if (player.getGamemode() != 1 && player.getGamemode() != 3 && adventureSettingsPacket.getFlag(AdventureSettingsPacket.FLYING)) {
             if (!this.plugin.getSettings().isFlight()) return;
 
-            if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+            if (player.hasPermission("revolutionarity.bypass.flight") ||
+                    player.hasPermission("revolutionarity.bypass.*") ||
+                    player.hasPermission("revolutionarity.*") ||
+                    player.hasPermission("*") ||
+                    player.isOp()) return;
 
             this.plugin.flag("FlightA", player);
             adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
@@ -63,7 +71,11 @@ public class Flight implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.flight") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         if (player.getEffects().containsKey(Effect.JUMP_BOOST)) return; // Checks will be implemented later
 
@@ -85,7 +97,11 @@ public class Flight implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.flight.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.flight") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         if (!player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT) && player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) {
             player.getAdventureSettings().set(AdventureSettings.Type.FLYING, false);

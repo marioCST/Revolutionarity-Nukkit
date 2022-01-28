@@ -10,58 +10,63 @@ permissions:
     description: All permissions to this plugin
     default: op
     children:
-      revolutionarity.airjump.bypass: true
-      revolutionarity.antiimmobile.bypass: true
-      revolutionarity.blockreach.bypass: true
-      revolutionarity.flight.bypass: true
+      revolutionarity.bypass.*: true
       revolutionarity.freeze: true
-      revolutionarity.glide.bypass: true
-      revolutionarity.killaura.bypass: true
-      revolutionarity.noswing.bypass: true
-      revolutionarity.reach.bypass: true
       revolutionarity.report: true
       revolutionarity.revolutionarity: true
-      revolutionarity.selfhit.bypass: true
-      revolutionarity.speed.bypass: true
       revolutionarity.staff: true
-  revolutionarity.airjump.bypass:
+  revolutionarity.bypass.*:
+    description: Bypass all checks
+    default: op
+    children:
+      revolutionarity.bypass.airjump: true
+      revolutionarity.bypass.antiimmobile: true
+      revolutionarity.bypass.blockreach: true
+      revolutionarity.bypass.flight: true
+      revolutionarity.bypass.glide: true
+      revolutionarity.bypass.killaura: true
+      revolutionarity.bypass.noswing: true
+      revolutionarity.bypass.reach: true
+      revolutionarity.bypass.selfhit: true
+      revolutionarity.bypass.speed: true
+  revolutionarity.bypass.airjump:
     description: Bypass airjump check
     default: op
-  revolutionarity.anitimmobile.bypass:
+  revolutionarity.bypass.anitimmobile:
     description: Bypass antiimmbile check
     default: op
-  revolutionarity.blockreach.bypass:
+  revolutionarity.bypass.blockreach:
     description: Bypass blockreach check
     default: op
-  revolutionarity.flight.bypass:
+  revolutionarity.bypass.flight:
     description: Bypass flight check
+    default: op
+  revolutionarity.bypass.glide:
+    description: Bypass Glide check
+    default: op
+  revolutionarity.bypass.killaura:
+    description: Bypass killaura check
+    default: op
+  revolutionarity.bypass.noswing:
+    description: Bypass noswing check
+    default: op
+  revolutionarity.bypass.reach:
+    description: Bypass reach check
+    default: op
+  revolutionarity.bypass.selfhit:
+    description: Bypass selfhit check
+    default: op
+  revolutionarity.bypass.speed:
+    description: Bypass speed check
     default: op
   revolutionarity.freeze:
     description: Freeze a player
-    default: op
-  revolutionarity.glide.bypass:
-    description: Bypass Glide check
-    default: op
-  revolutionarity.killaura.bypass:
-    description: Bypass killaura check
-    default: op
-  revolutionarity.noswing.bypass:
-    description: Bypass noswing check
-    default: op
-  revolutionarity.reach.bypass:
-    description: Bypass reach check
     default: op
   revolutionarity.report:
     description: Report a player
     default: op
   revolutionarity.revolutionarity:
     description: Revolutionarity command
-    default: op
-  revolutionarity.selfhit.bypass:
-    description: Bypass selfhit check
-    default: op
-  revolutionarity.speed.bypass:
-    description: Bypass speed check
     default: op
   revolutionarity.staff:
     description: Staff permission

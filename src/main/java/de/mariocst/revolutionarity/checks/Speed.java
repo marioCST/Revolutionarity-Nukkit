@@ -26,7 +26,11 @@ public class Speed extends Task implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.speed.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.speed") ||
+            player.hasPermission("revolutionarity.bypass.*") ||
+            player.hasPermission("revolutionarity.*") ||
+            player.hasPermission("*")
+            || player.isOp()) return;
 
         if (player.getEffects().containsKey(Effect.SPEED)) return;
 
@@ -56,7 +60,11 @@ public class Speed extends Task implements Listener {
 
             /*if (!this.plugin.getSettings().isSpeed()) return;
 
-            if (player.hasPermission("revolutionarity.speed.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+            if (player.hasPermission("revolutionarity.bypass.speed") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
             if (this.wait.containsKey(player)) if (this.wait.get(player) != 0) {
                 this.wait.put(player, this.wait.get(player) - 1);

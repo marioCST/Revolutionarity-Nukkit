@@ -20,7 +20,11 @@ public class AirJump implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.airjump.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.airjump") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         if (player.getGamemode() == 1 || player.getGamemode() == 3) return;
 

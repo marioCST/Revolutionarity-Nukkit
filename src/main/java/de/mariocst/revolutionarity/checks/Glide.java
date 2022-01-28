@@ -26,7 +26,11 @@ public class Glide implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.glide.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.glide") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) return;
 

@@ -31,7 +31,11 @@ public class Reach implements Listener {
 
         if (player.getGamemode() != 0) return;
 
-        if (player.hasPermission("revolutionarity.reach.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+        if (player.hasPermission("revolutionarity.bypass.reach") ||
+                player.hasPermission("revolutionarity.bypass.*") ||
+                player.hasPermission("revolutionarity.*") ||
+                player.hasPermission("*") ||
+                player.isOp()) return;
 
         Location eyeHeight = player.getLocation().add(0.0, player.getEyeHeight(), 0.0);
 
