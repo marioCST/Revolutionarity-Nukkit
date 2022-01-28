@@ -16,7 +16,7 @@ public class Settings {
     public HashMap<Player, Double> velo = new HashMap<>();
 
     @Getter
-    private boolean airJump, antiImmobile, blockReach, flight, glide, killAura, noSwing, reach, selfHit, speed;
+    private boolean airJump, antiImmobile, blockReach, flight, glide, killAura, noSwing, reach, selfHit, speed, step;
 
     @Getter
     private int maxTicksInAir;
@@ -127,7 +127,14 @@ public class Settings {
             this.speed = this.config.getBoolean("speed");
         }
         else {
-            this.speed = true;
+            this.speed = false;
+        }
+
+        if (this.config.containsKey("step")) {
+            this.step = this.config.getBoolean("step");
+        }
+        else {
+            this.step = true;
         }
 
         if (this.config.containsKey("maxVelo")) {
@@ -154,6 +161,7 @@ public class Settings {
             this.config.put("maxReach", this.maxReach);
             this.config.put("selfHit", this.selfHit);
             this.config.put("speed", this.speed);
+            this.config.put("step", this.step);
             this.config.put("maxVelo", this.maxVelo);
             Config c = new Config(this.plugin.getDataFolder() + "/settings.yml", Config.YAML);
             c.setAll(this.config);

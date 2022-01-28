@@ -95,6 +95,7 @@ public class Revolutionarity extends PluginBase {
         manager.registerEvents(new NoSwing(this), this);
         manager.registerEvents(new Reach(this), this);
         manager.registerEvents(new SelfHit(this), this);
+        manager.registerEvents(new Step(this), this);
 
         manager.registerEvents(new PacketListener(), this);
 

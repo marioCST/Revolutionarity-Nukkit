@@ -17,3 +17,4 @@ Revolutionarity is a bad and basic AntiCheat for PowerNukkit, providing checks a
 - Reach
 - SelfHit
 - Speed (Broken by Nukkit)
+- Step
