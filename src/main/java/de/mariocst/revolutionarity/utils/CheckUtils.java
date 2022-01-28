@@ -105,6 +105,8 @@ public class CheckUtils {
 
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
+                if (player.getLevel().getBlock(player.getLocation().add(x, 0.0, z)).getId() != BlockID.AIR) continue;
+
                 if (player.getLevel().getBlock(player.getLocation().add(x, -0.3, z)).getId() != BlockID.AIR) {
                     return true;
                 }
