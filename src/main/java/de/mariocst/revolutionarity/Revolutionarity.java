@@ -46,7 +46,7 @@ public class Revolutionarity extends PluginBase {
 
         if (this.pluginSettings.getDiscordWebhookLink().equals("")) this.warning("No discord webhook link entered!");
 
-        this.log("Revolutionarity AntiCheat loaded!");
+        this.log("Revolutionarity AntiCheat loaded on version " + this.getDescription().getVersion() + "!");
     }
 
     @Override

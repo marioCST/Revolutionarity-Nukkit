@@ -1,5 +1,5 @@
 name: Revolutionarity
-version: 1.0
+version: 1.2.2
 api: 1.0.13
 main: de.mariocst.revolutionarity.Revolutionarity
 author: marioCST
@@ -15,6 +15,7 @@ permissions:
       revolutionarity.blockreach.bypass: true
       revolutionarity.flight.bypass: true
       revolutionarity.freeze: true
+      revolutionarity.glide.bypass: true
       revolutionarity.killaura.bypass: true
       revolutionarity.noswing.bypass: true
       revolutionarity.reach.bypass: true
@@ -37,6 +38,9 @@ permissions:
     default: op
   revolutionarity.freeze:
     description: Freeze a player
+    default: op
+  revolutionarity.glide.bypass:
+    description: Bypass Glide check
     default: op
   revolutionarity.killaura.bypass:
     description: Bypass killaura check
