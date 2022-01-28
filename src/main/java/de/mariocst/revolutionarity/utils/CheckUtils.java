@@ -103,6 +103,32 @@ public class CheckUtils {
                     player.getLevel().getBlock(player.getLocation().add(0.0, subtract, 1)).getId() != BlockID.AIR;
         }*/
 
+        if (player.getY() != Math.floor(player.getY())) {
+            if (player.getLevelBlock().getId() != BlockID.AIR) return true;
+
+            for (int x = -1; x <= 1; x++) {
+                for (int z = -1; z <= 1; z++) {
+                    if (player.getLevel().getBlock(player.getLocation().add(x, 0.0, z)).getId() != BlockID.AIR) continue;
+
+                    if (player.getLevel().getBlock(player.getLocation().add(x, -0.1, z)).getId() != BlockID.AIR) {
+                        return true;
+                    }
+                    else if (player.getLevel().getBlock(player.getLocation().add(x, -0.2, z)).getId() != BlockID.AIR) {
+                        return true;
+                    }
+                    else if (player.getLevel().getBlock(player.getLocation().add(x, -0.6, z)).getId() != BlockID.AIR && player.getY() >= Math.floor(player.getY()) + 0.47) {
+                        return true;
+                    }
+                    else if (player.getLevel().getBlock(player.getLocation().add(x, -0.8, z)).getId() != BlockID.AIR && player.getY() >= Math.floor(player.getY()) + 0.74) {
+                        return true;
+                    }
+                    else if (player.getLevel().getBlock(player.getLocation().add(x, -0.95, z)).getId() != BlockID.AIR && player.getY() >= Math.floor(player.getY()) + 0.89) {
+                        return true;
+                    }
+                }
+            }
+        }
+
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
                 if (player.getLevel().getBlock(player.getLocation().add(x, 0.0, z)).getId() != BlockID.AIR) continue;
@@ -120,6 +146,12 @@ public class CheckUtils {
         if (player.getX() < 0) return player.getX() <= Math.floor(player.getX()) - minX && player.getX() >= Math.floor(player.getX()) - maxX;
 
         return player.getX() >= Math.floor(player.getX()) + minX && player.getX() <= Math.floor(player.getX()) + maxX;
+    }
+
+    private static boolean isCoordinateYBetween(Player player, double minY, double maxY) {
+        if (player.getY() < 0) return player.getY() <= Math.floor(player.getY()) - minY && player.getY() >= Math.floor(player.getY()) - maxY;
+
+        return player.getY() >= Math.floor(player.getY()) + minY && player.getY() <= Math.floor(player.getY()) + maxY;
     }
 
     private static boolean isCoordinateZBetween(Player player, double minZ, double maxZ) {

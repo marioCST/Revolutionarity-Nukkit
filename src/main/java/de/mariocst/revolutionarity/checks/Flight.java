@@ -67,6 +67,8 @@ public class Flight implements Listener {
 
         if (player.getEffects().containsKey(Effect.JUMP_BOOST)) return; // Checks will be implemented later
 
+        if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) return;
+
         if (CheckUtils.isOnGround(player)) return;
 
         if (!PlayerTasks.lastOnGround.containsKey(player)) return;

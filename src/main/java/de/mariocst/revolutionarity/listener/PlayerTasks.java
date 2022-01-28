@@ -1,5 +1,6 @@
 package de.mariocst.revolutionarity.listener;
 
+import cn.nukkit.AdventureSettings;
 import cn.nukkit.Player;
 import cn.nukkit.level.Location;
 import cn.nukkit.scheduler.Task;
@@ -20,7 +21,7 @@ public class PlayerTasks extends Task {
     @Override
     public void onRun(int i) {
         for (Player player : this.plugin.getServer().getOnlinePlayers().values()) {
-            if (CheckUtils.isOnGround(player)) {
+            if (CheckUtils.isOnGround(player) || player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) {
                 lastOnGround.remove(player);
                 lastOnGround.put(player, player.getLocation());
             }
