@@ -20,7 +20,7 @@ public class RevolutionaryCommand extends Command {
 
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
-                CommandParameter.newEnum("action", false, new String[]{"config", "setprefix"})
+                CommandParameter.newEnum("action", false, new String[]{"config", "setprefix", "setkickmessage"})
         });
     }
 
@@ -60,14 +60,25 @@ public class RevolutionaryCommand extends Command {
                         this.plugin.saveConfigs();
                         break;
                     }
+                    case "setkickmessage": {
+                        StringBuilder strings = new StringBuilder();
+                        for (int i = 1; i < args.length; i++) {
+                            strings.append(args[i]).append(" ");
+                        }
+
+                        this.plugin.getPluginSettings().setKickMessage(strings.toString().replaceAll("&", "§"));
+                        sender.sendMessage(this.plugin.getPrefix() + "Set kick message to " + strings.toString().replaceAll("&", "§"));
+                        this.plugin.saveConfigs();
+                        break;
+                    }
                     default: {
-                        sender.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix>");
+                        sender.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix|setkickmessage>");
                         break;
                     }
                 }
             }
             else {
-                sender.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix>");
+                sender.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix|setkickmessage>");
             }
             return true;
         }
@@ -108,14 +119,25 @@ public class RevolutionaryCommand extends Command {
                         this.plugin.saveConfigs();
                         break;
                     }
+                    case "setkickmessage": {
+                        StringBuilder strings = new StringBuilder();
+                        for (int i = 1; i < args.length; i++) {
+                            strings.append(args[i]).append(" ");
+                        }
+
+                        this.plugin.getPluginSettings().setKickMessage(strings.toString().replaceAll("&", "§"));
+                        player.sendMessage(this.plugin.getPrefix() + "Set kick message to " + strings.toString().replaceAll("&", "§"));
+                        this.plugin.saveConfigs();
+                        break;
+                    }
                     default: {
-                        player.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix>");
+                        player.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix|setkickmessage>");
                         break;
                     }
                 }
             }
             else {
-                player.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix>");
+                player.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix|setkickmessage>");
             }
         }
         return false;

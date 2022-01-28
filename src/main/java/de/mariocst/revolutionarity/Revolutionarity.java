@@ -156,7 +156,7 @@ public class Revolutionarity extends PluginBase {
 
         if (velo >= this.settings.getMaxVelo()) {
             this.settings.velo.remove(flagged);
-            flagged.kick("§cError while handling player movement", false);
+            flagged.kick(this.pluginSettings.getKickMessage(), false);
 
             for (Player player : this.getServer().getOnlinePlayers().values()) {
                 if (player.hasPermission("revolutionarity.staff") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) {

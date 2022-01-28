@@ -18,6 +18,10 @@ public class PluginSettings {
     @Getter
     private String discordWebhookLink;
 
+    @Getter
+    @Setter
+    private String kickMessage;
+
     public PluginSettings(Revolutionarity plugin, ConfigSection config) {
         this.plugin = plugin;
 
@@ -42,11 +46,19 @@ public class PluginSettings {
         else {
             this.discordWebhookLink = "";
         }
+
+        if (this.config.containsKey("kickMessage")) {
+            this.kickMessage = this.config.getString("kickMessage");
+        }
+        else {
+            this.kickMessage = "§cError while handling player movement";
+        }
     }
 
     public void save() {
         this.config.put("prefix", this.prefix);
         this.config.put("discordWebhookLink", this.discordWebhookLink);
+        this.config.put("kickMessage", this.kickMessage);
         Config c = new Config(this.plugin.getDataFolder() + "/pluginSettings.yml", Config.YAML);
         c.setAll(this.config);
         c.save();
