@@ -20,6 +20,31 @@ public class Speed extends Task implements Listener {
         this.plugin = plugin;
     }
 
+    /*@EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        if (!this.plugin.getSettings().isSpeed()) return;
+
+        Player player = event.getPlayer();
+
+        if (player.hasPermission("revolutionarity.speed.bypass") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) return;
+
+        if (player.getEffects().containsKey(Effect.SPEED)) return;
+
+        if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) return;
+
+        if (player.getGamemode() == 3) return;
+
+        Location from = event.getFrom();
+        Location to = event.getTo();
+
+        Vector3f vector = to.asVector3f().setY(0.0f);
+        double dist = vector.distance(from.asVector3f().setY(0.0f));
+
+        dist *= player.getServer().getTicksPerSecond();
+
+        player.sendMessage(this.plugin.getPrefix() + "Speed: " + dist);
+    }*/
+
     @Override
     public void onRun(int i) {
         for (Player player : this.plugin.getServer().getOnlinePlayers().values()) {
@@ -40,7 +65,12 @@ public class Speed extends Task implements Listener {
 
             if (Flight.isFlying(player)) return;
 
-            try {
+            Vector3f vector = pos.get(player).asVector3f().setY(0.0f);
+            double dist = vector.distance(lastPos.get(player).asVector3f().setY(0.0f)) * 20;
+
+            player.sendMessage(this.plugin.getPrefix() + "Speed: " + dist);*/
+
+            /*try {
                 double posX = pos.get(player).getX();
                 double posZ = pos.get(player).getZ();
 
