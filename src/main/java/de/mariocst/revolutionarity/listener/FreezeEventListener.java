@@ -30,10 +30,10 @@ public class FreezeEventListener extends Task {
             lastFreezed.put(player, player.isImmobile());
 
             if (player.isImmobile()) {
-                this.plugin.freezed.put(player, player.getLocation());
+                this.plugin.frozen.put(player, player.getLocation());
             }
             else {
-                this.plugin.freezed.remove(player);
+                this.plugin.frozen.remove(player);
             }
         }
     }
