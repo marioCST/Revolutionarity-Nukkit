@@ -22,6 +22,7 @@ permissions:
       revolutionarity.bypass.airjump: true
       revolutionarity.bypass.antiimmobile: true
       revolutionarity.bypass.blockreach: true
+      revolutionarity.bypass.editionfaker: true
       revolutionarity.bypass.flight: true
       revolutionarity.bypass.glide: true
       revolutionarity.bypass.killaura: true
@@ -30,6 +31,7 @@ permissions:
       revolutionarity.bypass.selfhit: true
       revolutionarity.bypass.speed: true
       revolutionarity.bypass.step: true
+      revolutionarity.bypass.toolbox: true
   revolutionarity.bypass.airjump:
     description: Bypass airjump check
     default: op
@@ -38,6 +40,9 @@ permissions:
     default: op
   revolutionarity.bypass.blockreach:
     description: Bypass blockreach check
+    default: op
+  revolutionarity.bypass.editionfaker:
+    description: Bypass editionfaker check
     default: op
   revolutionarity.bypass.flight:
     description: Bypass flight check
@@ -62,6 +67,9 @@ permissions:
     default: op
   revolutionarity.bypass.step:
     description: Bypass step check
+    default: op
+  revolutionarity.bypass.toolbox:
+    description: Bypass toolbox check
     default: op
   revolutionarity.freeze:
     description: Freeze a player

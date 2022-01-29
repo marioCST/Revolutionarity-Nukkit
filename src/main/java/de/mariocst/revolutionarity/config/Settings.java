@@ -16,7 +16,7 @@ public class Settings {
     public HashMap<Player, Double> velo = new HashMap<>();
 
     @Getter
-    private boolean airJump, antiImmobile, blockReach, flight, glide, killAura, noSwing, reach, selfHit, speed, step;
+    private boolean airJump, antiImmobile, blockReach, editionFaker, flight, glide, killAura, noSwing, reach, selfHit, speed, step, toolBox;
 
     @Getter
     private int maxTicksInAir;
@@ -58,6 +58,13 @@ public class Settings {
         }
         else {
             this.maxBlockReach = 6.2;
+        }
+
+        if (this.config.containsKey("editionFaker")) {
+            this.editionFaker = this.config.getBoolean("editionFaker");
+        }
+        else {
+            this.editionFaker = true;
         }
 
         if (this.config.containsKey("flight")) {
@@ -137,6 +144,13 @@ public class Settings {
             this.step = true;
         }
 
+        if (this.config.containsKey("toolBox")) {
+            this.toolBox = this.config.getBoolean("toolBox");
+        }
+        else {
+            this.toolBox = true;
+        }
+
         if (this.config.containsKey("maxVelo")) {
             this.maxVelo = this.config.getDouble("maxVelo");
         }
@@ -151,6 +165,7 @@ public class Settings {
             this.config.put("antiImmobile", this.antiImmobile);
             this.config.put("blockReach", this.blockReach);
             this.config.put("maxBlockReach", this.maxBlockReach);
+            this.config.put("editionFaker", this.editionFaker);
             this.config.put("flight", this.flight);
             this.config.put("glide", this.glide);
             this.config.put("maxTicksInAir", this.maxTicksInAir);
@@ -162,6 +177,7 @@ public class Settings {
             this.config.put("selfHit", this.selfHit);
             this.config.put("speed", this.speed);
             this.config.put("step", this.step);
+            this.config.put("toolBox", this.toolBox);
             this.config.put("maxVelo", this.maxVelo);
             Config c = new Config(this.plugin.getDataFolder() + "/settings.yml", Config.YAML);
             c.setAll(this.config);
