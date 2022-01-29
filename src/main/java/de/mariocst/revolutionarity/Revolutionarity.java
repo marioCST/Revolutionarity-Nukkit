@@ -38,7 +38,7 @@ public class Revolutionarity extends PluginBase {
     @Getter
     private ReportForm reportForm;
 
-    public final HashMap<Player, Location> freezed = new HashMap<>();
+    public final HashMap<Player, Location> frozen = new HashMap<>();
 
     @Override
     public void onEnable() {

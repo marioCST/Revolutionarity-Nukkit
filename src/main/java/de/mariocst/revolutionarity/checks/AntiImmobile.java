@@ -25,13 +25,13 @@ public class AntiImmobile implements Listener {
                 player.hasPermission("*") ||
                 player.isOp()) return;
 
-        for (Player ignored : this.plugin.freezed.keySet()) {
-            if (player.getLocation().getX() > this.plugin.freezed.get(player).getX() + 0.1 ||
-                    player.getLocation().getX() < this.plugin.freezed.get(player).getX() - 0.1 ||
-                    player.getLocation().getY() > this.plugin.freezed.get(player).getY() + 0.1 ||
-                    player.getLocation().getY() < this.plugin.freezed.get(player).getY() - 0.1 ||
-                    player.getLocation().getZ() > this.plugin.freezed.get(player).getZ() + 0.1 ||
-                    player.getLocation().getZ() < this.plugin.freezed.get(player).getZ() - 0.1) {
+        for (Player ignored : this.plugin.frozen.keySet()) {
+            if (player.getLocation().getX() > this.plugin.frozen.get(player).getX() + 0.1 ||
+                    player.getLocation().getX() < this.plugin.frozen.get(player).getX() - 0.1 ||
+                    player.getLocation().getY() > this.plugin.frozen.get(player).getY() + 0.1 ||
+                    player.getLocation().getY() < this.plugin.frozen.get(player).getY() - 0.1 ||
+                    player.getLocation().getZ() > this.plugin.frozen.get(player).getZ() + 0.1 ||
+                    player.getLocation().getZ() < this.plugin.frozen.get(player).getZ() - 0.1) {
                 event.setCancelled(true);
                 this.plugin.flag("AntiImmobile", player);
             }
