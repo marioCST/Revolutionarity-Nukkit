@@ -29,7 +29,7 @@ public class KillAura implements Listener {
                 player.hasPermission("*") ||
                 player.isOp()) return;
 
-        if (player.getLoginChainData().getDeviceOS() == 1 || player.getLoginChainData().getDeviceOS() == 2) return; // Filter mobile players (Android, iOS), ToolBox KillAura is shit and will probably get flagged by a NoSwing check, needs check for EditionFaker
+        if (player.getLoginChainData().getDeviceOS() == 1 || player.getLoginChainData().getDeviceOS() == 2) return; // Filter mobile players (Android, iOS), ToolBox KillAura is shit and will probably get flagged by a NoSwing check
 
         final Location playerLocation = player.getLocation();
         final Location entityLocation = event.getEntity().getLocation();

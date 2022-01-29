@@ -34,6 +34,8 @@ public class Glide implements Listener {
 
         if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) return;
 
+        if (player.getGamemode() == 1 || player.getGamemode() == 3) return;
+
         if (!CheckUtils.isOnGround(player) && event.getFrom().getY() == player.getY()) {
             int airTime = this.ticksInAir.containsKey(player) ? this.ticksInAir.get(player) + 1 : 1;
 
