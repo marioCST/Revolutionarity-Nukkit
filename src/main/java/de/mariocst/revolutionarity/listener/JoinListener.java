@@ -27,7 +27,7 @@ public class JoinListener implements Listener {
                     player.isOp()) return;
 
             if (!player.getLoginChainData().getDeviceModel().equals(player.getLoginChainData().getDeviceModel().toUpperCase())) {
-                this.plugin.flag("Anti ToolBox", player);
+                this.plugin.flag("ToolBox", player);
                 player.kick(this.plugin.getPluginSettings().getKickMessage(), false);
             }
         }
