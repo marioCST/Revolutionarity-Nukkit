@@ -16,6 +16,7 @@ import de.mariocst.revolutionarity.listener.FreezeEventListener;
 import de.mariocst.revolutionarity.listener.JoinListener;
 import de.mariocst.revolutionarity.listener.PacketListener;
 import de.mariocst.revolutionarity.listener.PlayerTasks;
+import de.mariocst.revolutionarity.logging.Logger;
 import de.mariocst.revolutionarity.webhook.DiscordWebhook;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,10 +41,14 @@ public class Revolutionarity extends PluginBase {
 
     public final HashMap<Player, Location> frozen = new HashMap<>();
 
+    private Logger acLogger;
+
     @Override
     public void onEnable() {
         this.loadConfigs();
         this.register();
+
+        this.acLogger = new Logger(this);
 
         if (this.pluginSettings.getDiscordWebhookLink().equals("")) this.warning("No discord webhook link entered!");
 
@@ -139,6 +144,7 @@ public class Revolutionarity extends PluginBase {
         String dtls = details.equals("") ? "" : " Details: " + details;
 
         this.warning("The player " + flagged.getName() + " got flagged for " + check + "!" + dtls);
+        this.acLogger.log("Player " + flagged.getName() + ", Check " + check + (dtls.equals("") ? "" : "," + dtls));
 
         double velo = 0.0;
 
@@ -160,6 +166,7 @@ public class Revolutionarity extends PluginBase {
         if (velo >= this.settings.getMaxVelo()) {
             this.settings.velo.remove(flagged);
             flagged.kick(this.pluginSettings.getKickMessage().replaceAll("%newline%", "\n"), false);
+            this.acLogger.log("Player " + flagged.getName() + " got kicked");
 
             for (Player player : this.getServer().getOnlinePlayers().values()) {
                 if (player.hasPermission("revolutionarity.staff") || player.hasPermission("revolutionarity.*") || player.hasPermission("*") || player.isOp()) {
