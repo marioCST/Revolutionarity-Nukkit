@@ -179,14 +179,25 @@ public class Revolutionarity extends PluginBase {
 
         DiscordWebhook webhook = new DiscordWebhook(this.pluginSettings.getDiscordWebhookLink());
 
-        webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                .setTitle("AntiCheat")
-                .setDescription("A player got flagged!")
-                .addField("Player", flagged.getName(), false)
-                .addField("Check", check, false)
-                .addField("Details", details, false)
-                .addField("DeviceOS", String.valueOf(flagged.getLoginChainData().getDeviceOS()), false)
-                .setColor(Color.RED));
+        if (details.equals("")) {
+            webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                    .setTitle("AntiCheat")
+                    .setDescription("A player got flagged!")
+                    .addField("Player", flagged.getName(), false)
+                    .addField("Check", check, false)
+                    .addField("DeviceOS", this.getDeviceName(flagged), false)
+                    .setColor(Color.RED));
+        }
+        else {
+            webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                    .setTitle("AntiCheat")
+                    .setDescription("A player got flagged!")
+                    .addField("Player", flagged.getName(), false)
+                    .addField("Check", check, false)
+                    .addField("Details", details, false)
+                    .addField("DeviceOS", this.getDeviceName(flagged), false)
+                    .setColor(Color.RED));
+        }
 
         try {
             webhook.execute();
@@ -211,5 +222,23 @@ public class Revolutionarity extends PluginBase {
                 this.getLogger().error(e.getLocalizedMessage());
             }
         }
+    }
+
+    private String getDeviceName(Player p) {
+        return String.valueOf(p.getLoginChainData().getDeviceOS())
+                .replace("0", "Unknown")
+                .replace("1", "Android")
+                .replace("2", "iOS")
+                .replace("3", "MacOS")
+                .replace("4", "FireOS")
+                .replace("5", "GearVR")
+                .replace("6", "HoloLens")
+                .replace("7", "Windows 10")
+                .replace("8", "Windows 10 86x")
+                .replace("9", "Dedicated")
+                .replace("10", "TV OS")
+                .replace("11", "PlayStation")
+                .replace("12", "Switch")
+                .replace("13", "XBOX");
     }
 }
