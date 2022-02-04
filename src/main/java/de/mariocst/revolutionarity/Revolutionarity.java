@@ -144,7 +144,7 @@ public class Revolutionarity extends PluginBase {
         String dtls = details.equals("") ? "" : " Details: " + details;
 
         this.warning("The player " + flagged.getName() + " got flagged for " + check + "!" + dtls);
-        this.acLogger.log("Player " + flagged.getName() + ", Check " + check + (dtls.equals("") ? "" : "," + dtls));
+        this.acLogger.log(flagged, check, details);
 
         double velo = 0.0;
 
@@ -185,6 +185,7 @@ public class Revolutionarity extends PluginBase {
                 .addField("Player", flagged.getName(), false)
                 .addField("Check", check, false)
                 .addField("Details", details, false)
+                .addField("DeviceOS", String.valueOf(flagged.getLoginChainData().getDeviceOS()), false)
                 .setColor(Color.RED));
 
         try {

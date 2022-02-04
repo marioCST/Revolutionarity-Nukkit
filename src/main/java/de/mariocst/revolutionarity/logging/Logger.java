@@ -1,5 +1,6 @@
 package de.mariocst.revolutionarity.logging;
 
+import cn.nukkit.Player;
 import de.mariocst.revolutionarity.Revolutionarity;
 
 import java.io.File;
@@ -42,6 +43,28 @@ public class Logger {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime time = LocalDateTime.now();
+
+        this.contents.add("[" + dtf.format(time) + "] " + msg);
+
+        try {
+            Files.write(this.file.toPath(), this.contents);
+        }
+        catch (IOException ignored) { }
+    }
+
+    public void log(Player flagged, String check, String details) {
+        this.contents.clear();
+        try {
+            this.contents.addAll(Files.readAllLines(this.file.toPath()));
+        }
+        catch (IOException ignored) { }
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime time = LocalDateTime.now();
+
+        String dtls = details.equals("") ? "" : ". Details: " + details;
+
+        String msg = "The player " + flagged.getName() + " got flagged for " + check + "! DeviceOS: " + flagged.getLoginChainData().getDeviceOS() + dtls;
 
         this.contents.add("[" + dtf.format(time) + "] " + msg);
 
