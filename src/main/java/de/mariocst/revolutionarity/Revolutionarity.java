@@ -226,6 +226,10 @@ public class Revolutionarity extends PluginBase {
 
     private String getDeviceName(Player p) {
         return String.valueOf(p.getLoginChainData().getDeviceOS())
+                .replace("10", "TV OS")
+                .replace("11", "PlayStation")
+                .replace("12", "Switch")
+                .replace("13", "XBOX")
                 .replace("0", "Unknown")
                 .replace("1", "Android")
                 .replace("2", "iOS")
@@ -235,10 +239,6 @@ public class Revolutionarity extends PluginBase {
                 .replace("6", "HoloLens")
                 .replace("7", "Windows")
                 .replace("8", "Windows 86x")
-                .replace("9", "Dedicated")
-                .replace("10", "TV OS")
-                .replace("11", "PlayStation")
-                .replace("12", "Switch")
-                .replace("13", "XBOX");
+                .replace("9", "Dedicated");
     }
 }
