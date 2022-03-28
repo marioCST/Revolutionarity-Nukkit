@@ -27,8 +27,9 @@ public class JoinListener implements Listener {
                     player.isOp()) return;
 
             if (!player.getLoginChainData().getDeviceModel().equals(player.getLoginChainData().getDeviceModel().toUpperCase())) {
-                this.plugin.flag("ToolBox", player);
-                player.kick(this.plugin.getPluginSettings().getKickMessage(), false);
+                this.plugin.flag("ToolBox", "Device model: " + player.getLoginChainData().getDeviceModel(), player);
+                this.plugin.getSettings().velo.remove(player);
+                this.plugin.getSettings().velo.put(player, this.plugin.getSettings().getMaxVelo());
             }
         }
 
@@ -42,7 +43,8 @@ public class JoinListener implements Listener {
                     player.isOp()) return;
 
             this.plugin.flag("EditionFaker", player);
-            player.kick(this.plugin.getPluginSettings().getKickMessage(), false);
+            this.plugin.getSettings().velo.remove(player);
+            this.plugin.getSettings().velo.put(player, this.plugin.getSettings().getMaxVelo());
         }
     }
 }
