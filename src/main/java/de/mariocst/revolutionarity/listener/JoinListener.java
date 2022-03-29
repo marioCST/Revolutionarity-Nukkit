@@ -26,10 +26,19 @@ public class JoinListener implements Listener {
                     player.hasPermission("*") ||
                     player.isOp()) return;
 
-            if (!player.getLoginChainData().getDeviceModel().equals(player.getLoginChainData().getDeviceModel().toUpperCase())) {
-                this.plugin.flag("ToolBox", "Device model: " + player.getLoginChainData().getDeviceModel(), player);
-                this.plugin.getSettings().velo.remove(player);
-                this.plugin.getSettings().velo.put(player, this.plugin.getSettings().getMaxVelo());
+            if (player.getLoginChainData().getDeviceModel().contains("nokia")) {
+                if (player.getLoginChainData().getDeviceModel().equals(player.getLoginChainData().getDeviceModel().toLowerCase())) {
+                    this.plugin.flag("ToolBox", "Device model: " + player.getLoginChainData().getDeviceModel(), player);
+                    this.plugin.getSettings().velo.remove(player);
+                    this.plugin.getSettings().velo.put(player, this.plugin.getSettings().getMaxVelo());
+                }
+            }
+            else {
+                if (!player.getLoginChainData().getDeviceModel().equals(player.getLoginChainData().getDeviceModel().toUpperCase())) {
+                    this.plugin.flag("ToolBox", "Device model: " + player.getLoginChainData().getDeviceModel(), player);
+                    this.plugin.getSettings().velo.remove(player);
+                    this.plugin.getSettings().velo.put(player, this.plugin.getSettings().getMaxVelo());
+                }
             }
         }
 
