@@ -12,7 +12,7 @@ Revolutionarity is a bad and basic AntiCheat for PowerNukkit, providing checks a
 - FlightB (Spider will get flagged by this)
 - FlightC (Illegal flying player, PlayerToggleFlightEvent)
 - Glide (Sometimes false flaggs (Server lag?))
-- KillAura (For removal due to being shit)
+- NoFall (Start glide player action check)
 - NoSwing (False flaggs if to much packets are sent (Around 20 CPS or less?))
 - Reach (False flaggs sometimes, might calculate shit)
 - SelfHit (Doesn't work)

@@ -1,5 +1,5 @@
 name: Revolutionarity
-version: 1.3.4
+version: 1.3.5
 api: 1.0.13
 main: de.mariocst.revolutionarity.Revolutionarity
 author: marioCST
@@ -25,7 +25,7 @@ permissions:
       revolutionarity.bypass.editionfaker: true
       revolutionarity.bypass.flight: true
       revolutionarity.bypass.glide: true
-      revolutionarity.bypass.killaura: true
+      revolutionarity.bypass.nofall: true
       revolutionarity.bypass.noswing: true
       revolutionarity.bypass.reach: true
       revolutionarity.bypass.selfhit: true
@@ -50,8 +50,8 @@ permissions:
   revolutionarity.bypass.glide:
     description: Bypass Glide check
     default: op
-  revolutionarity.bypass.killaura:
-    description: Bypass killaura check
+  revolutionarity.bypass.nofall:
+    description: Bypass nofall check
     default: op
   revolutionarity.bypass.noswing:
     description: Bypass noswing check

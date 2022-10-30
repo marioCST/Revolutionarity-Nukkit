@@ -16,13 +16,13 @@ public class Settings {
     public HashMap<Player, Double> velo = new HashMap<>();
 
     @Getter
-    private boolean airJump, antiImmobile, blockReach, editionFaker, flight, glide, killAura, noSwing, reach, selfHit, speed, step, toolBox;
+    private boolean airJump, antiImmobile, blockReach, editionFaker, flight, glide, noFall, noSwing, reach, selfHit, speed, step, toolBox;
 
     @Getter
     private int maxTicksInAir;
 
     @Getter
-    private double maxBlockReach, maxYaw, maxReach, maxVelo;
+    private double maxBlockReach, maxReach, maxVelo;
 
     public Settings(Revolutionarity plugin, ConfigSection configSection) {
         this.plugin = plugin;
@@ -88,18 +88,11 @@ public class Settings {
             this.maxTicksInAir = 5;
         }
 
-        if (this.config.containsKey("killAura")) {
-            this.killAura = this.config.getBoolean("killAura");
+        if (this.config.containsKey("noFall")) {
+            this.noFall = this.config.getBoolean("noFall");
         }
         else {
-            this.killAura = true;
-        }
-
-        if (this.config.containsKey("maxYaw")) {
-            this.maxYaw = this.config.getDouble("maxYaw");
-        }
-        else {
-            this.maxYaw = 66.0;
+            this.noFall = true;
         }
 
         if (this.config.containsKey("noSwing")) {
@@ -169,8 +162,7 @@ public class Settings {
             this.config.put("flight", this.flight);
             this.config.put("glide", this.glide);
             this.config.put("maxTicksInAir", this.maxTicksInAir);
-            this.config.put("killAura", this.killAura);
-            this.config.put("maxYaw", this.maxYaw);
+            this.config.put("noFall", this.noSwing);
             this.config.put("noSwing", this.noSwing);
             this.config.put("reach", this.reach);
             this.config.put("maxReach", this.maxReach);
