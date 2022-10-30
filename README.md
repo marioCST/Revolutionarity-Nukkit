@@ -1,9 +1,7 @@
 Revolutionarity
 -
 
-Bedrock: 1.18.0 +
-
-PowerNukkit: 1.6.0.0
+PowerNukkit: 1.6.1.0
 
 Revolutionarity is a bad and basic AntiCheat for PowerNukkit, providing checks against:
 - AirJump (False flagging a lot)
