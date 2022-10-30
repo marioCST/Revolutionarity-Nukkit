@@ -55,5 +55,18 @@ public class JoinListener implements Listener {
             this.plugin.getSettings().velo.remove(player);
             this.plugin.getSettings().velo.put(player, this.plugin.getSettings().getMaxVelo());
         }
+        else if (player.getLoginChainData().getDeviceOS() == 12 && !player.getLoginChainData().getDeviceModel().equals("Switch")) { // Nintendo Switch
+            if (!this.plugin.getSettings().isEditionFaker()) return;
+
+            if (player.hasPermission("revolutionarity.bypass.editionfaker") ||
+                    player.hasPermission("revolutionarity.bypass.*") ||
+                    player.hasPermission("revolutionarity.*") ||
+                    player.hasPermission("*") ||
+                    player.isOp()) return;
+
+            this.plugin.flag("EditionFaker", player);
+            this.plugin.getSettings().velo.remove(player);
+            this.plugin.getSettings().velo.put(player, this.plugin.getSettings().getMaxVelo());
+        }
     }
 }
