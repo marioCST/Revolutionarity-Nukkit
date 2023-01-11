@@ -42,7 +42,8 @@ public class JoinListener implements Listener {
             }
         }
 
-        if ((player.getLoginChainData().getDeviceOS() == 1 || player.getLoginChainData().getDeviceOS() == 2) && player.getLoginChainData().getDeviceModel().equals("")) { // Android, iOS
+        // PCs now do have device models
+        /*if ((player.getLoginChainData().getDeviceOS() == 1 || player.getLoginChainData().getDeviceOS() == 2) && player.getLoginChainData().getDeviceModel().equals("")) { // Android, iOS
             if (!this.plugin.getSettings().isEditionFaker()) return;
 
             if (player.hasPermission("revolutionarity.bypass.editionfaker") ||
@@ -55,7 +56,7 @@ public class JoinListener implements Listener {
             this.plugin.getSettings().velo.remove(player);
             this.plugin.getSettings().velo.put(player, this.plugin.getSettings().getMaxVelo());
         }
-        else if (player.getLoginChainData().getDeviceOS() == 12 && !player.getLoginChainData().getDeviceModel().equals("Switch")) { // Nintendo Switch
+        else */if (player.getLoginChainData().getDeviceOS() == 12 && !player.getLoginChainData().getDeviceModel().equals("Switch")) { // Nintendo Switch
             if (!this.plugin.getSettings().isEditionFaker()) return;
 
             if (player.hasPermission("revolutionarity.bypass.editionfaker") ||
