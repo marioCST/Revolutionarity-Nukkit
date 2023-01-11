@@ -7,7 +7,7 @@ Revolutionarity is a bad and basic AntiCheat for PowerNukkit, providing checks a
 - AirJump (False flagging a lot)
 - AntiImmobile (Could slow down the server a bit idk)
 - BlockReach (False flaggs sometimes, especially for mobile)
-- EditionFaker (Android, iOS)
+- EditionFaker (Switch)
 - FlightA (Value check)
 - FlightB (Spider will get flagged by this)
 - FlightC (Illegal flying player, PlayerToggleFlightEvent)
