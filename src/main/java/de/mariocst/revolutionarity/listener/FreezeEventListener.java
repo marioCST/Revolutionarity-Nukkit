@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class FreezeEventListener extends Task {
     private final Revolutionarity plugin;
 
-    private final HashMap<Player, Boolean> lastFreezed = new HashMap<>();
+    private final HashMap<Player, Boolean> lastFrozen = new HashMap<>();
 
     public FreezeEventListener(Revolutionarity plugin) {
         this.plugin = plugin;
@@ -19,15 +19,15 @@ public class FreezeEventListener extends Task {
     @Override
     public void onRun(int i) {
         for (Player player : this.plugin.getServer().getOnlinePlayers().values()) {
-            if (lastFreezed.containsKey(player)) {
-                if (player.isImmobile() != lastFreezed.get(player)) {
+            if (lastFrozen.containsKey(player)) {
+                if (player.isImmobile() != lastFrozen.get(player)) {
                     //Wait, why did I even add this event???
                     PlayerFreezeEvent event = new PlayerFreezeEvent(player, player.isImmobile());
                     this.plugin.getServer().getPluginManager().callEvent(event);
                 }
             }
 
-            lastFreezed.put(player, player.isImmobile());
+            lastFrozen.put(player, player.isImmobile());
 
             if (player.isImmobile()) {
                 this.plugin.frozen.put(player, player.getLocation());
