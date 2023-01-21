@@ -11,11 +11,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Logger {
-    private final File file;
+    private File file;
     private final ArrayList<String> contents = new ArrayList<>();
 
     public Logger(Revolutionarity plugin) {
-        File dir = new File(plugin.getDataFolder() + "/logs");
+        File dir = new File(plugin.getDataFolder(), "logs");
 
         if (!dir.exists()) {
             try {
@@ -24,7 +24,19 @@ public class Logger {
             catch (IOException ignored) { }
         }
 
-        this.file = new File(dir + "/log.txt");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        LocalDateTime time = LocalDateTime.now();
+        String formatted = dtf.format(time);
+
+        this.file = new File(dir, formatted + ".txt");
+
+        if (this.file.exists()) {
+            int i = 1;
+
+            while ((this.file = new File(dir, formatted + " (" + i +  ").txt")).exists()) {
+                i++;
+            }
+        }
 
         if (!this.file.exists()) {
             try {
@@ -36,6 +48,7 @@ public class Logger {
 
     public void log(String msg) {
         this.contents.clear();
+
         try {
             this.contents.addAll(Files.readAllLines(this.file.toPath()));
         }
@@ -54,6 +67,7 @@ public class Logger {
 
     public void log(Player flagged, String check, String details) {
         this.contents.clear();
+
         try {
             this.contents.addAll(Files.readAllLines(this.file.toPath()));
         }
