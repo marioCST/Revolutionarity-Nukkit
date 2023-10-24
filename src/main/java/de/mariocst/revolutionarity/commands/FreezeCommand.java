@@ -21,7 +21,7 @@ public class FreezeCommand extends Command {
 
     @Override
     public boolean execute(CommandSender sender, String s, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             if (args.length == 1) {
                 Player t = this.plugin.getServer().getPlayer(args[0].replaceAll("_", " ").replaceAll("\"", ""));
 
@@ -44,8 +44,6 @@ public class FreezeCommand extends Command {
             }
             return true;
         }
-
-        Player player = (Player) sender;
 
         if (!this.testPermission(player)) {
             if (args.length == 0) {

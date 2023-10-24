@@ -8,6 +8,7 @@ import cn.nukkit.event.block.BlockBreakEvent;
 import cn.nukkit.event.block.BlockPlaceEvent;
 import cn.nukkit.level.Location;
 import de.mariocst.revolutionarity.Revolutionarity;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class BlockReach implements Listener {
     private final Revolutionarity plugin;
@@ -23,10 +24,7 @@ public class BlockReach implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        if (player.hasPermission("revolutionarity.bypass.blockreach") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "blockreach")) return;
 
         Location playerLoc = player.getLocation();
         Location blockLoc = block.getLocation();
@@ -46,11 +44,7 @@ public class BlockReach implements Listener {
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        if (player.hasPermission("revolutionarity.bypass.blockreach") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "blockreach")) return;
 
         Location playerLoc = player.getLocation();
         Location blockLoc = block.getLocation();

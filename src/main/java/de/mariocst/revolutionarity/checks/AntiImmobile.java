@@ -5,6 +5,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerMoveEvent;
 import de.mariocst.revolutionarity.Revolutionarity;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class AntiImmobile implements Listener {
     private final Revolutionarity plugin;
@@ -19,11 +20,7 @@ public class AntiImmobile implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.bypass.antiimmobile") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "antiimmobile")) return;
 
         if (!this.plugin.frozen.containsKey(player)) return;
 

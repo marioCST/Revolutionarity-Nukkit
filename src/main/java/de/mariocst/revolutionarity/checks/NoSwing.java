@@ -7,6 +7,7 @@ import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.network.protocol.InventoryTransactionPacket;
 import de.mariocst.revolutionarity.Revolutionarity;
 import de.mariocst.revolutionarity.listener.PacketListener;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class NoSwing implements Listener {
     private final Revolutionarity plugin;
@@ -19,17 +20,11 @@ public class NoSwing implements Listener {
     public void onDataPacketReceive(DataPacketReceiveEvent event) {
         if (!this.plugin.getSettings().isNoSwing()) return;
 
-        if (!(event.getPacket() instanceof InventoryTransactionPacket)) return;
+        if (!(event.getPacket() instanceof InventoryTransactionPacket packet)) return;
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.bypass.noswing") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
-
-        InventoryTransactionPacket packet = (InventoryTransactionPacket) event.getPacket();
+        if (PlayerUtils.bypassesCheck(player, "noswing")) return;
 
         if (packet.transactionType != 3) return;
 

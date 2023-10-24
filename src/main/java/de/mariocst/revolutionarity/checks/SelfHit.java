@@ -5,6 +5,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import de.mariocst.revolutionarity.Revolutionarity;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class SelfHit implements Listener {
     private final Revolutionarity plugin;
@@ -17,15 +18,9 @@ public class SelfHit implements Listener {
     public void onHit(EntityDamageByEntityEvent event) {
         if (!this.plugin.getSettings().isSelfHit()) return;
 
-        if (!(event.getEntity() instanceof Player) || !(event.getDamager() instanceof Player)) return;
+        if (!(event.getEntity() instanceof Player) || !(event.getDamager() instanceof Player player)) return;
 
-        Player player = (Player) event.getDamager();
-
-        if (player.hasPermission("revolutionarity.bypass.selfhit") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "selfhit")) return;
 
         if (player == event.getEntity()) {
             event.setCancelled(true);

@@ -8,6 +8,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerMoveEvent;
 import de.mariocst.revolutionarity.Revolutionarity;
 import de.mariocst.revolutionarity.utils.CheckUtils;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 import java.util.HashMap;
 
@@ -26,11 +27,7 @@ public class Glide implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.bypass.glide") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "glide")) return;
 
         if (player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) return;
 

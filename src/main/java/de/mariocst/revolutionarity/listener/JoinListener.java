@@ -5,6 +5,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import de.mariocst.revolutionarity.Revolutionarity;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class JoinListener implements Listener {
     private final Revolutionarity plugin;
@@ -20,11 +21,7 @@ public class JoinListener implements Listener {
         if (player.getLoginChainData().getDeviceOS() == 1) { // Android
             if (!this.plugin.getSettings().isToolBox()) return;
 
-            if (player.hasPermission("revolutionarity.bypass.toolbox") ||
-                    player.hasPermission("revolutionarity.bypass.*") ||
-                    player.hasPermission("revolutionarity.*") ||
-                    player.hasPermission("*") ||
-                    player.isOp()) return;
+            if (PlayerUtils.bypassesCheck(player, "toolbox")) return;
 
             if (player.getLoginChainData().getDeviceModel().contains("nokia")) {
                 if (player.getLoginChainData().getDeviceModel().equals(player.getLoginChainData().getDeviceModel().toLowerCase())) {
@@ -42,7 +39,7 @@ public class JoinListener implements Listener {
             }
         }
 
-        // PCs now do have device models
+        // PCs do have device models now
         /*if ((player.getLoginChainData().getDeviceOS() == 1 || player.getLoginChainData().getDeviceOS() == 2) && player.getLoginChainData().getDeviceModel().equals("")) { // Android, iOS
             if (!this.plugin.getSettings().isEditionFaker()) return;
 
@@ -59,11 +56,7 @@ public class JoinListener implements Listener {
         else */if (player.getLoginChainData().getDeviceOS() == 12 && !player.getLoginChainData().getDeviceModel().equals("Switch")) { // Nintendo Switch
             if (!this.plugin.getSettings().isEditionFaker()) return;
 
-            if (player.hasPermission("revolutionarity.bypass.editionfaker") ||
-                    player.hasPermission("revolutionarity.bypass.*") ||
-                    player.hasPermission("revolutionarity.*") ||
-                    player.hasPermission("*") ||
-                    player.isOp()) return;
+            if (PlayerUtils.bypassesCheck(player, "editionfaker")) return;
 
             this.plugin.flag("EditionFaker", player);
             this.plugin.getSettings().velo.remove(player);

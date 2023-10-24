@@ -10,6 +10,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.level.Location;
 import de.mariocst.revolutionarity.Revolutionarity;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class Reach implements Listener {
     private final Revolutionarity plugin;
@@ -22,20 +23,15 @@ public class Reach implements Listener {
     public void onAttack(EntityDamageByEntityEvent event) {
         if (!this.plugin.getSettings().isReach()) return;
 
-        if (!(event.getDamager() instanceof Player)) return;
+        if (!(event.getDamager() instanceof Player player)) return;
 
-        Player player = (Player) event.getDamager();
         Entity damaged = event.getEntity();
 
         if (damaged instanceof EntityEnderman || damaged instanceof EntityEnderDragon || damaged instanceof EntityWither) return;
 
         if (player.getGamemode() != 0) return;
 
-        if (player.hasPermission("revolutionarity.bypass.reach") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "reach")) return;
 
         Location eyeHeight = player.getLocation().add(0.0, player.getEyeHeight(), 0.0);
 

@@ -29,12 +29,10 @@ public class ReportCommand extends Command {
 
     @Override
     public boolean execute(CommandSender sender, String s, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             sender.sendMessage(this.plugin.getPrefix() + "Ban the player by yourself");
             return true;
         }
-
-        Player player = (Player) sender;
 
         if (this.testPermission(player)) {
             if (args.length >= 2) {

@@ -6,8 +6,11 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.item.ItemID;
 import cn.nukkit.network.protocol.PlayerActionPacket;
+import cn.nukkit.network.protocol.PlayerAuthInputPacket;
+import cn.nukkit.network.protocol.types.AuthInputAction;
 import de.mariocst.revolutionarity.Revolutionarity;
 import de.mariocst.revolutionarity.listener.PlayerTasks;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class NoFall implements Listener {
     private final Revolutionarity plugin;
@@ -20,19 +23,15 @@ public class NoFall implements Listener {
     public void onMove(DataPacketReceiveEvent event) {
         if (!this.plugin.getSettings().isNoFall()) return;
 
-        if (!(event.getPacket() instanceof PlayerActionPacket)) return;
-
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.bypass.nofall") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "nofall")) return;
 
-        PlayerActionPacket packet = (PlayerActionPacket) event.getPacket();
+        if (event.getPacket() instanceof PlayerActionPacket pap)
+            if (pap.action != PlayerActionPacket.ACTION_START_GLIDE) return;
 
-        if (packet.action != PlayerActionPacket.ACTION_START_GLIDE) return;
+        if (event.getPacket() instanceof PlayerAuthInputPacket paip)
+            if (!paip.getInputData().contains(AuthInputAction.START_GLIDING)) return;
 
         if (player.getInventory().getChestplate().getId() != ItemID.ELYTRA) {
             event.setCancelled(true);

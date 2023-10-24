@@ -31,28 +31,11 @@ public class PluginSettings {
     }
 
     private void init() {
-        if (this.config.containsKey("prefix")) {
-            this.prefix = this.config.getString("prefix");
-        }
-        else {
-            this.prefix = "§8[§3Revolutionarity§8] | §f";
-        }
-
+        this.prefix = this.config.getString("prefix", "§8[§3Revolutionarity§8] | §f");
         this.plugin.setPrefix(this.prefix);
 
-        if (this.config.containsKey("discordWebhookLink")) {
-            this.discordWebhookLink = this.config.getString("discordWebhookLink");
-        }
-        else {
-            this.discordWebhookLink = "";
-        }
-
-        if (this.config.containsKey("kickMessage")) {
-            this.kickMessage = this.config.getString("kickMessage");
-        }
-        else {
-            this.kickMessage = "§cError while handling player movement";
-        }
+        this.discordWebhookLink = this.config.getString("discordWebhookLink");
+        this.kickMessage = this.config.getString("kickMessage", "An internal server error occurred");
     }
 
     public void save() {

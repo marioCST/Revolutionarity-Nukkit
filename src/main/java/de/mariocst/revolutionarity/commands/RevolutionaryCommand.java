@@ -26,29 +26,25 @@ public class RevolutionaryCommand extends Command {
 
     @Override
     public boolean execute(CommandSender sender, String s, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             if (args.length >= 2) {
                 switch (args[0].toLowerCase()) {
-                    case "config": {
+                    case "config" -> {
                         switch (args[1].toLowerCase()) {
-                            case "save": {
+                            case "save" -> {
                                 this.plugin.saveConfigs();
                                 sender.sendMessage(this.plugin.getPrefix() + "Configs saved!");
-                                break;
                             }
-                            case "reload": {
+                            case "reload" -> {
                                 this.plugin.loadConfigs();
                                 sender.sendMessage(this.plugin.getPrefix() + "Configs reloaded!");
-                                break;
                             }
-                            default: {
+                            default -> {
                                 sender.sendMessage(this.plugin.getPrefix() + "/revolutionarity config <reload|save>");
-                                break;
                             }
                         }
-                        break;
                     }
-                    case "setprefix": {
+                    case "setprefix" -> {
                         StringBuilder strings = new StringBuilder();
                         for (int i = 1; i < args.length; i++) {
                             strings.append(args[i]).append(" ");
@@ -58,9 +54,8 @@ public class RevolutionaryCommand extends Command {
                         this.plugin.getPluginSettings().setPrefix(strings.toString().replaceAll("&", "§"));
                         sender.sendMessage(this.plugin.getPrefix() + "Set prefix to " + strings.toString().replaceAll("&", "§"));
                         this.plugin.saveConfigs();
-                        break;
                     }
-                    case "setkickmessage": {
+                    case "setkickmessage" -> {
                         StringBuilder strings = new StringBuilder();
                         for (int i = 1; i < args.length; i++) {
                             strings.append(args[i]).append(" ");
@@ -69,11 +64,9 @@ public class RevolutionaryCommand extends Command {
                         this.plugin.getPluginSettings().setKickMessage(strings.toString().replaceAll("&", "§"));
                         sender.sendMessage(this.plugin.getPrefix() + "Set kick message to " + strings.toString().replaceAll("&", "§"));
                         this.plugin.saveConfigs();
-                        break;
                     }
-                    default: {
+                    default -> {
                         sender.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix|setkickmessage>");
-                        break;
                     }
                 }
             }
@@ -83,31 +76,25 @@ public class RevolutionaryCommand extends Command {
             return true;
         }
 
-        Player player = (Player) sender;
-
         if (this.testPermission(player)) {
             if (args.length >= 2) {
                 switch (args[0].toLowerCase()) {
-                    case "config": {
+                    case "config" -> {
                         switch (args[1].toLowerCase()) {
-                            case "save": {
+                            case "save" -> {
                                 this.plugin.saveConfigs();
                                 player.sendMessage(this.plugin.getPrefix() + "Configs saved!");
-                                break;
                             }
-                            case "reload": {
+                            case "reload" -> {
                                 this.plugin.loadConfigs();
                                 player.sendMessage(this.plugin.getPrefix() + "Configs reloaded!");
-                                break;
                             }
-                            default: {
+                            default -> {
                                 player.sendMessage(this.plugin.getPrefix() + "/revolutionarity config <reload|save>");
-                                break;
                             }
                         }
-                        break;
                     }
-                    case "setprefix": {
+                    case "setprefix" -> {
                         StringBuilder strings = new StringBuilder();
                         for (int i = 1; i < args.length; i++) {
                             strings.append(args[i]).append(" ");
@@ -117,9 +104,8 @@ public class RevolutionaryCommand extends Command {
                         this.plugin.getPluginSettings().setPrefix(strings.toString().replaceAll("&", "§"));
                         player.sendMessage(this.plugin.getPrefix() + "Set prefix to " + strings.toString().replaceAll("&", "§"));
                         this.plugin.saveConfigs();
-                        break;
                     }
-                    case "setkickmessage": {
+                    case "setkickmessage" -> {
                         StringBuilder strings = new StringBuilder();
                         for (int i = 1; i < args.length; i++) {
                             strings.append(args[i]).append(" ");
@@ -128,11 +114,9 @@ public class RevolutionaryCommand extends Command {
                         this.plugin.getPluginSettings().setKickMessage(strings.toString().replaceAll("&", "§"));
                         player.sendMessage(this.plugin.getPrefix() + "Set kick message to " + strings.toString().replaceAll("&", "§"));
                         this.plugin.saveConfigs();
-                        break;
                     }
-                    default: {
+                    default -> {
                         player.sendMessage(this.plugin.getPrefix() + "/revolutionarity <config|setprefix|setkickmessage>");
-                        break;
                     }
                 }
             }

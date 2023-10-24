@@ -7,12 +7,14 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerMoveEvent;
 import cn.nukkit.event.player.PlayerToggleFlightEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
-import cn.nukkit.network.protocol.AdventureSettingsPacket;
-import cn.nukkit.network.protocol.ProtocolInfo;
+import cn.nukkit.network.protocol.PlayerActionPacket;
+import cn.nukkit.network.protocol.PlayerAuthInputPacket;
+import cn.nukkit.network.protocol.types.AuthInputAction;
 import cn.nukkit.potion.Effect;
 import de.mariocst.revolutionarity.Revolutionarity;
 import de.mariocst.revolutionarity.listener.PlayerTasks;
 import de.mariocst.revolutionarity.utils.CheckUtils;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 import java.util.HashMap;
 
@@ -29,26 +31,49 @@ public class Flight implements Listener {
     public void onDataPacketReceive(DataPacketReceiveEvent event) {
         Player player = event.getPlayer();
 
-        if (event.getPacket().pid() != ProtocolInfo.ADVENTURE_SETTINGS_PACKET) return;
+        if (!player.getServer().getAllowFlight() && !player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT)) {
+            if (event.getPacket() instanceof PlayerActionPacket pap)
+                if (pap.action != PlayerActionPacket.ACTION_START_FLYING) return;
 
-        AdventureSettingsPacket adventureSettingsPacket = (AdventureSettingsPacket) event.getPacket();
+            if (event.getPacket() instanceof PlayerAuthInputPacket paip)
+                if (!paip.getInputData().contains(AuthInputAction.START_FLYING)) return;
 
-        if (!player.getServer().getAllowFlight() && adventureSettingsPacket.getFlag(AdventureSettingsPacket.FLYING) && !player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT)) {
             if (!this.plugin.getSettings().isFlight()) return;
 
-            if (player.hasPermission("revolutionarity.bypass.flight") ||
-                    player.hasPermission("revolutionarity.bypass.*") ||
-                    player.hasPermission("revolutionarity.*") ||
-                    player.hasPermission("*") ||
-                    player.isOp()) return;
+            if (PlayerUtils.bypassesCheck(player, "flight")) return;
 
             this.plugin.flag("FlightA", player);
-            adventureSettingsPacket.setFlag(AdventureSettingsPacket.FLYING, false);
+            event.setCancelled(true);
             return;
         }
 
+        boolean updated = false;
+        boolean flying = false;
+
+        if (event.getPacket() instanceof PlayerActionPacket pap) {
+            if (pap.action == PlayerActionPacket.ACTION_START_FLYING) {
+                updated = true;
+                flying = true;
+            }
+
+            if (pap.action == PlayerActionPacket.ACTION_STOP_FLYING)
+                updated = true;
+        }
+
+        if (event.getPacket() instanceof PlayerAuthInputPacket paip) {
+            if (paip.getInputData().contains(AuthInputAction.START_FLYING)) {
+                updated = true;
+                flying = true;
+            }
+
+            if (paip.getInputData().contains(AuthInputAction.STOP_FLYING))
+                updated = true;
+        }
+
+        if (!updated) return;
+
         isFlying.remove(player);
-        isFlying.put(player, adventureSettingsPacket.getFlag(AdventureSettingsPacket.FLYING));
+        isFlying.put(player, flying);
     }
 
     @EventHandler
@@ -57,11 +82,7 @@ public class Flight implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.bypass.flight") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "flight")) return;
 
         if (player.getEffects().containsKey(Effect.JUMP_BOOST)) return; // Checks will be implemented later
 
@@ -83,11 +104,7 @@ public class Flight implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.bypass.flight") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "flight")) return;
 
         if (!player.getAdventureSettings().get(AdventureSettings.Type.ALLOW_FLIGHT) && player.getAdventureSettings().get(AdventureSettings.Type.FLYING)) {
             player.getAdventureSettings().set(AdventureSettings.Type.FLYING, false);
@@ -98,7 +115,6 @@ public class Flight implements Listener {
     }
 
     public static boolean isFlying(Player player) {
-        if (!isFlying.containsKey(player)) return false;
-        return isFlying.get(player);
+        return isFlying.getOrDefault(player, false);
     }
 }

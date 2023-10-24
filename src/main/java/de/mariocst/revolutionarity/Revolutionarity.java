@@ -50,7 +50,7 @@ public class Revolutionarity extends PluginBase {
 
         this.acLogger = new Logger(this);
 
-        if (this.pluginSettings.getDiscordWebhookLink().equals("")) this.warning("No discord webhook link entered!");
+        if (this.pluginSettings.getDiscordWebhookLink().isEmpty()) this.warning("No discord webhook link entered!");
 
         this.log("Revolutionarity AntiCheat loaded on version " + this.getDescription().getVersion() + "!");
     }
@@ -179,7 +179,7 @@ public class Revolutionarity extends PluginBase {
 
         DiscordWebhook webhook = new DiscordWebhook(this.pluginSettings.getDiscordWebhookLink());
 
-        if (details.equals("")) {
+        if (details.isEmpty()) {
             webhook.addEmbed(new DiscordWebhook.EmbedObject()
                     .setTitle("AntiCheat")
                     .setDescription("A player got flagged!")
@@ -226,15 +226,16 @@ public class Revolutionarity extends PluginBase {
 
     private String getDeviceName(Player p) {
         return String.valueOf(p.getLoginChainData().getDeviceOS())
-                .replace("10", "TV OS")
                 .replace("11", "PlayStation")
                 .replace("12", "Switch")
                 .replace("13", "XBOX")
+                .replace("14", "Windows Phone")
+                .replace("15", "Linux")
                 .replace("0", "Unknown")
                 .replace("1", "Android")
                 .replace("2", "iOS")
                 .replace("3", "MacOS")
-                .replace("4", "FireOS")
+                .replace("4", "Amazon")
                 .replace("5", "GearVR")
                 .replace("6", "HoloLens")
                 .replace("7", "Windows")

@@ -6,6 +6,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJumpEvent;
 import de.mariocst.revolutionarity.Revolutionarity;
 import de.mariocst.revolutionarity.utils.CheckUtils;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class AirJump implements Listener {
     private final Revolutionarity plugin;
@@ -20,11 +21,7 @@ public class AirJump implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.bypass.airjump") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "airjump")) return;
 
         if (player.getGamemode() == 1 || player.getGamemode() == 3) return;
 

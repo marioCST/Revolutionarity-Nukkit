@@ -5,6 +5,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerMoveEvent;
 import de.mariocst.revolutionarity.Revolutionarity;
+import de.mariocst.revolutionarity.utils.PlayerUtils;
 
 public class Step implements Listener {
     private final Revolutionarity plugin;
@@ -19,11 +20,7 @@ public class Step implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("revolutionarity.bypass.step") ||
-                player.hasPermission("revolutionarity.bypass.*") ||
-                player.hasPermission("revolutionarity.*") ||
-                player.hasPermission("*") ||
-                player.isOp()) return;
+        if (PlayerUtils.bypassesCheck(player, "step")) return;
 
         double diff = player.getY() - Speed.lastPos.get(player).getY();
 

@@ -32,124 +32,23 @@ public class Settings {
     }
 
     private void init() {
-        if (this.config.containsKey("airJump")) {
-            this.airJump = this.config.getBoolean("airJump");
-        }
-        else {
-            this.airJump = true;
-        }
-
-        if (this.config.containsKey("antiImmobile")) {
-            this.antiImmobile = this.config.getBoolean("antiImmobile");
-        }
-        else {
-            this.antiImmobile = true;
-        }
-
-        if (this.config.containsKey("blockReach")) {
-            this.blockReach = this.config.getBoolean("blockReach");
-        }
-        else {
-            this.blockReach = true;
-        }
-
-        if (this.config.containsKey("maxBlockReach")) {
-            this.maxBlockReach = this.config.getDouble("maxBlockReach");
-        }
-        else {
-            this.maxBlockReach = 6.2;
-        }
-
-        if (this.config.containsKey("editionFaker")) {
-            this.editionFaker = this.config.getBoolean("editionFaker");
-        }
-        else {
-            this.editionFaker = true;
-        }
-
-        if (this.config.containsKey("flight")) {
-            this.flight = this.config.getBoolean("flight");
-        }
-        else {
-            this.flight = true;
-        }
-
-        if (this.config.containsKey("glide")) {
-            this.glide = this.config.getBoolean("glide");
-        }
-        else {
-            this.glide = true;
-        }
-
-        if (this.config.containsKey("maxTicksInAir")) {
-            this.maxTicksInAir = this.config.getInt("maxTicksInAir");
-        }
-        else {
-            this.maxTicksInAir = 5;
-        }
-
-        if (this.config.containsKey("noFall")) {
-            this.noFall = this.config.getBoolean("noFall");
-        }
-        else {
-            this.noFall = true;
-        }
-
-        if (this.config.containsKey("noSwing")) {
-            this.noSwing = this.config.getBoolean("noSwing");
-        }
-        else {
-            this.noSwing = true;
-        }
-
-        if (this.config.containsKey("reach")) {
-            this.reach = this.config.getBoolean("reach");
-        }
-        else {
-            this.reach = true;
-        }
-
-        if (this.config.containsKey("maxReach")) {
-            this.maxReach = this.config.getDouble("maxReach");
-        }
-        else {
-            this.maxReach = 3.6;
-        }
-
-        if (this.config.containsKey("selfHit")) {
-            this.selfHit = this.config.getBoolean("selfHit");
-        }
-        else {
-            this.selfHit = true;
-        }
-
-        if (this.config.containsKey("speed")) {
-            this.speed = this.config.getBoolean("speed");
-        }
-        else {
-            this.speed = false;
-        }
-
-        if (this.config.containsKey("step")) {
-            this.step = this.config.getBoolean("step");
-        }
-        else {
-            this.step = true;
-        }
-
-        if (this.config.containsKey("toolBox")) {
-            this.toolBox = this.config.getBoolean("toolBox");
-        }
-        else {
-            this.toolBox = true;
-        }
-
-        if (this.config.containsKey("maxVelo")) {
-            this.maxVelo = this.config.getDouble("maxVelo");
-        }
-        else {
-            this.maxVelo = 20.0;
-        }
+        this.airJump = this.config.getBoolean("airJump", true);
+        this.antiImmobile = this.config.getBoolean("antiImmobile", true);
+        this.blockReach = this.config.getBoolean("blockReach", true);
+        this.maxBlockReach = this.config.getDouble("maxBlockReach", 6.2);
+        this.editionFaker = this.config.getBoolean("editionFaker", true);
+        this.flight = this.config.getBoolean("flight", true);
+        this.glide = this.config.getBoolean("glide", true);
+        this.maxTicksInAir = this.config.getInt("maxTicksInAir", 5);
+        this.noFall = this.config.getBoolean("noFall", true);
+        this.noSwing = this.config.getBoolean("noSwing");
+        this.reach = this.config.getBoolean("reach", true);
+        this.maxReach = this.config.getDouble("maxReach", 3.6);
+        this.selfHit = this.config.getBoolean("selfHit", true);
+        this.speed = this.config.getBoolean("speed");
+        this.step = this.config.getBoolean("step", true);
+        this.toolBox = this.config.getBoolean("toolBox", true);
+        this.maxVelo = this.config.getDouble("maxVelo", 20.0);
     }
 
     public void save() {
@@ -171,6 +70,7 @@ public class Settings {
             this.config.put("step", this.step);
             this.config.put("toolBox", this.toolBox);
             this.config.put("maxVelo", this.maxVelo);
+
             Config c = new Config(this.plugin.getDataFolder() + "/settings.yml", Config.YAML);
             c.setAll(this.config);
             c.save();
