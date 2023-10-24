@@ -1,7 +1,0 @@
-[user]
-    email = wiiumr@web.de
-    name = marioCST
-[gpg]
-    program = gpg
-[commit]
-    gpgsign = true
